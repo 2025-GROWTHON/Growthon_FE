@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 function SignupForm() {
   const {
@@ -8,13 +9,38 @@ function SignupForm() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("제출된 데이터:", data);
+  const onSubmit = async (data) => {
+    //회원 가입 누르면 실행, 변경 요지 있음
+    try {
+      const response = await axios.post(apIurl, data);
+      const result = response.data;
+
+      alert(result.message);
+    } catch (error) {
+      if (error.response) {
+        const errData = error.response.data;
+
+        // 전체 메시지 출력
+        alert(`회원가입 실패: ${errData.message}`);
+
+        // 필드별 에러 출력 (선택)
+        if (errData.errors && Array.isArray(errData.errors)) {
+          errData.errors.forEach((fieldError) => {
+            console.warn(
+              `${fieldError.field} 필드 오류: ${fieldError.reason} (입력값: ${fieldError.value})`
+            );
+          });
+        }
+      } else {
+        alert("서버와 연결할 수 없습니다.");
+        console.error("네트워크 오류:", error);
+      }
+    }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {/* 이름 */}
+      {/* 이름 인풋 */}
       <div>
         <label>이름</label>
         <input
@@ -25,7 +51,6 @@ function SignupForm() {
           <p className="text-red-500 text-sm">{errors.name.message}</p>
         )}
       </div>
-
       {/* 이메일 */}
       <div>
         <label>이메일</label>
@@ -43,7 +68,6 @@ function SignupForm() {
           <p className="text-red-500 text-sm">{errors.email.message}</p>
         )}
       </div>
-
       {/* 비밀번호 */}
       <div>
         <label>비밀번호</label>
@@ -61,7 +85,6 @@ function SignupForm() {
           <p className="text-red-500 text-sm">{errors.password.message}</p>
         )}
       </div>
-
       <button type="submit">회원가입</button>
     </form>
   );
