@@ -12,7 +12,8 @@ const mockProducts = [
     weight: "3000",
     category: "과일",
     price: 5000,
-    produceId: 1
+    produceId: 1,
+    userId: 101
   },
   {
     title: "친환경 당근 – 흙 묻은 자연 그대로의 채소",
@@ -27,7 +28,8 @@ const mockProducts = [
     weight: "2000",
     category: "채소",
     price: 3000,
-    produceId: 2
+    produceId: 2,
+    userId: 102
   },
   {
     title: "아삭아삭 배 – 과즙이 터지는 제철 과일",
@@ -35,14 +37,15 @@ const mockProducts = [
     description: `충남 아산의 맑은 공기 아래 재배된 배입니다.
 [농가 정보]
 - 농가 이름: 아산과수원
-- 농부 이름: 최우성
-- 전화번호: 010-3456-7890`,
+- 농부 이름: 김태수
+- 전화번호: 010-1234-5678`,
     origin: "충남 아산",
     harvestDate: "2024-09-10",
     weight: "2500",
     category: "과일",
     price: 7000,
-    produceId: 1
+    produceId: 3,
+    userId: 101
   },
   {
     title: "방울토마토 – 샐러드에 딱 좋은 새콤함",
@@ -57,7 +60,8 @@ const mockProducts = [
     weight: "1500",
     category: "채소",
     price: 4500,
-    produceId: 2
+    produceId: 4,
+    userId: 103
   },
   {
     title: "제주 오렌지 – 비타민이 팡팡!",
@@ -72,7 +76,8 @@ const mockProducts = [
     weight: "3500",
     category: "과일",
     price: 6500,
-    produceId: 3
+    produceId: 5,
+    userId: 104
   },
   {
     title: "유기농 상추 – 쌈으로 좋은 아삭한 채소",
@@ -87,7 +92,8 @@ const mockProducts = [
     weight: "1000",
     category: "채소",
     price: 2500,
-    produceId: 3
+    produceId: 6,
+    userId: 105
   }
 ]
 
