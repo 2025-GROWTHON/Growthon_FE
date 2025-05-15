@@ -45,8 +45,8 @@ function MarketSection() {
         {filteredProducts.length === 0 && selectedCategory === null ? (
           <p className="text-gray-500"></p>
         ) : (
-          filteredProducts.map((product, index) => (
-            <p key={`${product.produceId}-${index}`} className="text-sm text-gray-800 mb-2">
+          filteredProducts.map((product) => (
+            <p key={product.produceId} className="text-sm text-gray-800 mb-2">
               {product.title}
             </p>
           ))

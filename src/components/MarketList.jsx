@@ -11,8 +11,8 @@ function MarketList() {
         여기에서 판매되는 농작물 상품들을 확인하세요.
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {products.map((item, index) => (
-          <Link to={`/market/${item.produceId}`} key={`${item.produceId}-${index}`}>
+        {products.map((item) => (
+          <Link to={`/market/${item.produceId}`} key={item.produceId}>
             <div className="border rounded-lg shadow-sm p-4 hover:shadow-md transition bg-white">
               {/* 카테고리 */}
               <span className="inline-block text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded mb-2">
@@ -21,7 +21,7 @@ function MarketList() {
 
               {/* 이미지 */}
               <div className="h-32 bg-gray-100 flex items-center justify-center text-gray-400 text-sm mb-3">
-                <img src={item.images} alt={item.name} className="h-full w-full object-cover" />
+                <img src={item.images} alt={item.title} className="h-full w-full object-cover" />
               </div>
 
               {/* 상품 이름 */}
