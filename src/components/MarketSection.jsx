@@ -2,12 +2,14 @@ import { useState } from "react";
 import mockProducts from "/src/api/mockData";
 
 function MarketSection() {
-  const [selectedCategory, setSelectedCategory] = useState("모두");
+  const [selectedCategory, setSelectedCategory] = useState(null); // 초기값을 null로 설정
   const categories = ["모두", "과일", "채소", "곡물"];
 
   // 선택된 카테고리에 따라 상품 필터링
   const filteredProducts =
-    selectedCategory === "모두"
+    selectedCategory === null
+      ? [] // 아무것도 선택되지 않았을 때 빈 배열 반환
+      : selectedCategory === "모두"
       ? mockProducts
       : mockProducts.filter((product) => product.category === selectedCategory);
 
@@ -21,7 +23,11 @@ function MarketSection() {
         {categories.map((category) => (
           <button
             key={category}
-            onClick={() => setSelectedCategory(category)}
+            onClick={() =>
+              setSelectedCategory((prevCategory) =>
+                prevCategory === category ? null : category
+              )
+            }
             className={`px-4 py-2 font-medium border transition
               ${
                 selectedCategory === category
@@ -36,11 +42,15 @@ function MarketSection() {
 
       {/* 선택된 카테고리의 상품 제목 표시 */}
       <div className="text-left px-6">
-        {filteredProducts.map((product, index) => (
-          <p key={`${product.produceId}-${index}`} className="text-sm text-gray-800 mb-2">
-            {product.title}
-          </p>
-        ))}
+        {filteredProducts.length === 0 && selectedCategory === null ? (
+          <p className="text-gray-500"></p>
+        ) : (
+          filteredProducts.map((product, index) => (
+            <p key={`${product.produceId}-${index}`} className="text-sm text-gray-800 mb-2">
+              {product.title}
+            </p>
+          ))
+        )}
       </div>
     </div>
   );
