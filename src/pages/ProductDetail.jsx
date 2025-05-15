@@ -4,7 +4,7 @@ import mockProducts from '../api/mockData';
 export default function ProductDetail() {
   const { produceId } = useParams(); // URL에서 productId 가져오기
   const product = mockProducts.find(
-    (item) => item.productId === parseInt(produceId, 10) // productId로 상품 찾기
+    (item) => item.produceId === parseInt(produceId, 10) // productId로 상품 찾기
   );
 
   if (!product) {
