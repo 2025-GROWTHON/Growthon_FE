@@ -1,0 +1,28 @@
+export default function ProductDescription({ product }) {
+  return (
+    <section className="px-6 pb-12">
+      <h3 className="text-xl font-bold text-center mb-2">상품 설명</h3>
+      <p className="text-sm text-gray-500 text-center mb-6">
+        저희의 농작물 제품은 신선하고 안전하게 재배됩니다.
+      </p>
+
+      <div className="grid grid-cols-2 gap-4 whitespace-pre-line">
+        <InfoBox label="상품 설명 및 농가 정보" value={product.description} />
+        <InfoBox label="중량" value={`${product.weight}g`} />
+        <InfoBox label="생산지" value={product.origin} />
+        <InfoBox label="생산 연월" value={product.harvestDate} />
+        <InfoBox label="특징" value="특징 레이블 없음" />
+        <InfoBox label="보관 방법" value="보관 방법 레이블 없음" />
+      </div>
+    </section>
+  );
+}
+
+function InfoBox({ label, value }) {
+  return (
+    <div className="border rounded p-4 bg-white shadow-sm">
+      <h4 className="text-sm text-gray-600 mb-1">{label}</h4>
+      <p className="text-base font-medium">{value}</p>
+    </div>
+  );
+}

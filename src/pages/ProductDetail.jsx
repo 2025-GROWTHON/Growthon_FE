@@ -1,23 +1,23 @@
 import { useParams } from 'react-router-dom';
 import mockProducts from '../api/mockData';
+import ProductSummary from '../components/ProductSummary';
+import ProductDescription from '../components/ProductDescription';
 
 export default function ProductDetail() {
-  const { produceId } = useParams(); // URL에서 productId 가져오기
+  const { produceId } = useParams();
   const product = mockProducts.find(
-    (item) => item.produceId === parseInt(produceId, 10) // productId로 상품 찾기
+    (item) => item.produceId === parseInt(produceId, 10)
   );
 
   if (!product) {
-    return <div>상품을 찾을 수 없습니다.</div>;
+    return <div className="text-center mt-20 text-gray-500">상품을 찾을 수 없습니다.</div>;
   }
 
   return (
     <div>
-      <h2>{product.title}</h2>
-      <p>카테고리: {product.category}</p>
-      <p>이미지: {product.images}</p>
-      <p>설명: {product.description}</p>
-      <p>가격: {product.price.toLocaleString()}원</p>
+      <ProductSummary product={product} />
+      <hr className="border-t border-gray-300 mb-6" />
+      <ProductDescription product={product} />
     </div>
   );
 }
