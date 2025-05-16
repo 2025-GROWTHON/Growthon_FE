@@ -1,14 +1,14 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import mockProducts from "/src/api/mockData";
 
 function MarketSection() {
-  const [selectedCategory, setSelectedCategory] = useState(null); // 초기값을 null로 설정
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const categories = ["모두", "과일", "채소", "곡물"];
 
-  // 선택된 카테고리에 따라 상품 필터링
   const filteredProducts =
     selectedCategory === null
-      ? [] // 아무것도 선택되지 않았을 때 빈 배열 반환
+      ? []
       : selectedCategory === "모두"
       ? mockProducts
       : mockProducts.filter((product) => product.category === selectedCategory);
@@ -46,9 +46,15 @@ function MarketSection() {
           <p className="text-gray-500"></p>
         ) : (
           filteredProducts.map((product) => (
-            <p key={product.produceId} className="text-sm text-gray-800 mb-2">
-              {product.title}
-            </p>
+            <Link
+              to={`/market/${product.produceId}`}
+              key={product.produceId}
+              className="block"
+            >
+              <p className="text-sm text-gray-800 mb-2 hover:underline cursor-pointer">
+                {product.title}
+              </p>
+            </Link>
           ))
         )}
       </div>
