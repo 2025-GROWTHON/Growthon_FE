@@ -1,11 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { loginSuccess } from "../store/authSlice";
 import "../App.css";
+import KaKaoLoginButton from "../components/KaKaoLoginButton";
 
 function Login() {
+  //카카오 로그인
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
+
+  //앱 시작 시 로컬 스토리지에서 꺼내서 로그인 유지
+  useEffect(() => {
+    const storedUser = localStorage.getItem("kakaoUser");
+    const storedToken = localStorage.getItem("token");
+    if (storedUser && storedToken) {
+      setUser(JSON.parse(storedUser));
+      setToken(storedToken);
+    }
+  }, []);
+
+  // 로그인 성공 핸들러: user 저장 + localStorage에 영구 보관    한번  더하는 이유는 역할 나누기 (백엔드 보내기 / 로컬 저장 )
+  const handleSuccess = async (kakaoUser) => {
+    try {
+      const res = axios.post("어쩌구 주소/api/auth/kakao", {
+        kakaoID: user.id,
+        nickname: profile_nickname,
+        profileimage: profile_image,
+      });
+      const { user, token } = res.data;
+
+      setUser(user);
+      estToken(token);
+
+      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("token", token);
+    } catch (err) {
+      serErr(err);
+    }
+  };
+
+  //그냥 로그인
+
   const dispatch = useDispatch();
 
   const {
@@ -18,16 +55,16 @@ function Login() {
     try {
       const response = await axios.post("/api/login", data);
 
-      const { accessToken, user } = response.data.data;
+      const { accessToken, user } = response.data.data; //구조 보니까 토큰이랑 user 위치 달라서 고쳐야 함,
 
       if (accessToken) {
         // 토큰 저장
         localStorage.setItem("token", accessToken);
         dispatch(loginSuccess({ user, token: accessToken })); //authSlice에 저장
-        alert("로그인 성공!");
+        alert("로그인 성공 하였습니다.");
       }
     } catch (error) {
-      alert("로그인 실패");
+      alert("로그인 실패 하였습니다.");
     }
   };
 
@@ -77,6 +114,7 @@ function Login() {
           <p>로그인</p>
         </button>
       </form>
+      <KaKaoLoginButton onSuccess={handleSuccess} onFailure={setError} />
     </div>
   );
 }
