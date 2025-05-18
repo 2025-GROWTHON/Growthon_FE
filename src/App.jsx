@@ -10,6 +10,9 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import { useDispatch } from "react-redux";
 import { loginSuccess } from "./store/authSlice";
+import ProductInput from "./pages/ProductInput";
+import SelctProductModify from "./pages/SelctProductModify";
+import ModifyPage from "./pages/ModifyPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +31,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/market" element={<Market />} />
         <Route path="/market/:produceId" element={<ProductDetail />} />
+        <Route path="/register" element={<ProductInput />} />
         <Route
           path="/login"
           element={
@@ -37,6 +41,8 @@ function App() {
             </span>
           }
         />
+        <Route path="/edit" element={<SelctProductModify />} />
+        <Route path="/edit/:produceId" element={<ModifyPage />} />
       </Routes>
       <Footer />
     </>
