@@ -1,11 +1,13 @@
-// Login.jsx
-// Signup.jsx
 import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "../store/authSlice";
 import "../App.css";
 
 function Login() {
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -16,13 +18,17 @@ function Login() {
     try {
       const response = await axios.post("/api/login", data);
 
-      const { accessToken } = response.data.data;
+      const { accessToken, user } = response.data.data;
 
       if (accessToken) {
         // 토큰 저장
         localStorage.setItem("token", accessToken);
+        dispatch(loginSuccess({ user, token: accessToken })); //authSlice에 저장
+        alert("로그인 성공!");
       }
-    } catch (error) {}
+    } catch (error) {
+      alert("로그인 실패");
+    }
   };
 
   return (
