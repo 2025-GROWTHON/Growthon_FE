@@ -13,6 +13,7 @@ import { loginSuccess } from "./store/authSlice";
 import ProductInput from "./pages/ProductInput";
 import SelctProductModify from "./pages/SelctProductModify";
 import ModifyPage from "./pages/ModifyPage";
+import Home from "./pages/Home";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ function App() {
     <>
       <Header />
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/market" element={<Market />} />
         <Route path="/market/:produceId" element={<ProductDetail />} />
