@@ -13,7 +13,8 @@ const mockProducts = [
     category: "과일",
     price: 5000,
     produceId: 1,
-    userId: 101
+    userId: 101,
+    updatedAt: "2024-09-15T12:00:00Z"
   },
   {
     title: "친환경 당근 – 흙 묻은 자연 그대로의 채소",
@@ -29,7 +30,8 @@ const mockProducts = [
     category: "채소",
     price: 3000,
     produceId: 2,
-    userId: 102
+    userId: 102,
+    updatedAt: "2024-09-08T09:30:00Z"
   },
   {
     title: "아삭아삭 배 – 과즙이 터지는 제철 과일",
@@ -45,7 +47,8 @@ const mockProducts = [
     category: "과일",
     price: 7000,
     produceId: 3,
-    userId: 101
+    userId: 101,
+    updatedAt: "2024-04-20T14:45:00Z"
   },
   {
     title: "방울토마토 – 샐러드에 딱 좋은 새콤함",
@@ -61,7 +64,8 @@ const mockProducts = [
     category: "채소",
     price: 4500,
     produceId: 4,
-    userId: 103
+    userId: 103,
+    updatedAt: "2024-01-25T11:10:00Z"
   },
   {
     title: "제주 오렌지 – 비타민이 팡팡!",
@@ -77,7 +81,8 @@ const mockProducts = [
     category: "과일",
     price: 6500,
     produceId: 5,
-    userId: 104
+    userId: 104,
+    updatedAt: "2024-09-28T16:20:00Z"
   },
   {
     title: "유기농 상추 – 쌈으로 좋은 아삭한 채소",
@@ -93,7 +98,8 @@ const mockProducts = [
     category: "채소",
     price: 2500,
     produceId: 6,
-    userId: 105
+    userId: 105,
+    updatedAt: "2024-09-10T08:00:00Z"
   }
 ]
 
