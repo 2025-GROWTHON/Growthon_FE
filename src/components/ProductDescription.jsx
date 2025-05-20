@@ -8,11 +8,11 @@ export default function ProductDescription({ product }) {
 
       <div className="grid grid-cols-2 gap-4 whitespace-pre-line">
         <InfoBox label="상품 설명 및 농가 정보" value={product.description} />
-        <InfoBox label="중량" value={`${product.weight}g`} />
+        <InfoBox label="중량" value={`${product.weight}`} />
         <InfoBox label="생산지" value={product.origin} />
         <InfoBox label="생산 연월" value={product.harvestDate} />
-        <InfoBox label="특징" value="특징 레이블 없음" />
-        <InfoBox label="보관 방법" value="보관 방법 레이블 없음" />
+        <InfoBox label="특징" value="생김새가 못나도 품질은 뛰어납니다" />
+        <InfoBox label="보관 방법" value="습하지 않은 곳에 보관하세요" />
       </div>
     </section>
   );
