@@ -22,13 +22,14 @@ function ModifyPage() {
       try {
         const response = await api.get(`/produces/${produceId}`);
         setProduct(response.data);
+        console.log(response.data);
         reset({
           title: response.data.title,
           origin: response.data.origin,
           harvestDate: response.data.harvestDate,
           weight: response.data.weight,
           description: response.data.description,
-          type: response.data.category, // ✅ 수정
+          category: response.data.category, // ✅ 수정
         });
       } catch (error) {
         alert("상품을 불러오지 못했습니다.");
@@ -41,19 +42,24 @@ function ModifyPage() {
 
   const onSubmit = async (data) => {
     try {
-      const formData = new FormData();
-      formData.append("title", data.title);
-      formData.append("origin", data.origin);
-      formData.append("harvestDate", data.harvestDate);
-      formData.append("weight", String(data.weight));
-      formData.append("description", data.description);
-      formData.append("category", data.category); // ✅ 수정
-
+      let imageName = data.images;
       if (data.images && data.images.length > 0) {
-        formData.append("images", data.images[0]);
+        imageName = data.images[0].name;
       }
 
-      await api.put(`/produce/${produceId}`, formData);
+      const requestBody = {
+        title: data.title,
+        description: data.description,
+        origin: data.origin,
+        harvestDate: data.harvestDate,
+        category: data.category,
+        images: data.images[0].name,
+        weight: String(data.weight),
+        
+      };// ✅ 수정
+      console.log(requestBody);
+
+      await api.put(`/produce/${produceId}`, requestBody);
 
       alert("수정이 완료되었습니다!");
       navigate(-1);
@@ -93,7 +99,7 @@ function ModifyPage() {
           <div>
             <label>생산 연월</label>
             <input
-              type="month"
+              type="date"
               {...register("harvestDate", {
                 required: "생산 연월을 선택해주세요",
               })}
