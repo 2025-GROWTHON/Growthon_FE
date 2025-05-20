@@ -55,7 +55,6 @@ function ModifyPage() {
         category: data.category,
         images: data.images[0].name,
         weight: String(data.weight),
-        
       };// ✅ 수정
       console.log(requestBody);
 
