@@ -10,10 +10,11 @@ function Login() {
   //카카오 로그인
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
+  const [error, setError] = useState(null);
 
   //앱 시작 시 로컬 스토리지에서 꺼내서 로그인 유지
   useEffect(() => {
-    const storedUser = localStorage.getItem("kakaoUser");
+    const storedUser = localStorage.getItem("user");
     const storedToken = localStorage.getItem("token");
     if (storedUser && storedToken) {
       setUser(JSON.parse(storedUser));
@@ -22,23 +23,14 @@ function Login() {
   }, []);
 
   // 로그인 성공 핸들러: user 저장 + localStorage에 영구 보관    한번  더하는 이유는 역할 나누기 (백엔드 보내기 / 로컬 저장 )
-  const handleSuccess = async (kakaoUser) => {
-    try {
-      const res = axios.post("어쩌구 주소/api/auth/kakao", {
-        kakaoID: user.id,
-        nickname: profile_nickname,
-        profileimage: profile_image,
-      });
-      const { user, token } = res.data;
+  const handleSuccess = async (res) => {
+    const { user, token } = res;
 
-      setUser(user);
-      estToken(token);
+    setUser(user);
+    setToken(token);
 
-      localStorage.setItem("user", JSON.stringify(user));
-      localStorage.setItem("token", token);
-    } catch (err) {
-      serErr(err);
-    }
+    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("token", token);
   };
 
   //그냥 로그인

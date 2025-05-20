@@ -1,8 +1,8 @@
 import axios from "axios";
-import { Profiler, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function KaKaoLoginButton({ onSuccess, onFailure }) {
-  [ready, setReady] = useState(false);
+  const [ready, setReady] = useState(false);
   const kakaoKey = import.meta.env.VITE_KAKAO_KEY;
   useEffect(() => {
     if (!kakaoKey) return;
@@ -19,19 +19,18 @@ function KaKaoLoginButton({ onSuccess, onFailure }) {
     if (!ready) return;
     window.Kakao.Auth.login({
       scope: "profile_nickname, profile_image",
-      turoughTalk: false,
+      throughTalk: false,
       success: () =>
         window.Kakao.API.request({
           url: "/v2/user/me",
           success: async (user) => {
-            console.log("api", user.id);
             //포스트
-            const res = axios.post("api", {
+            const res = await axios.post("/api/auth/kakao", {
               kakaoID: user.id,
-              nickname: profile_nickname,
-              profileimage: profile_image,
+              nickname: user.properties?.nickname,
+              profileimage: user.properties?.profile_image,
             });
-            onSuccess(data);
+            onSuccess(res.data);
           },
           fail: onFailure,
         }),
