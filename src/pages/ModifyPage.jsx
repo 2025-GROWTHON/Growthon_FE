@@ -1,58 +1,69 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import { useEffect, useState } from "react";
+import api from "../api/axiosInstance";
 
 function ModifyPage() {
   const navigate = useNavigate();
   const { produceId } = useParams();
-  const product = mockProducts.find(
-    (item) => String(item.produceId) === String(produceId)
-  );
-
-  if (!product) {
-    return <div>상품을 찾을 수 없습니다.</div>;
-  }
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm({
-    defaultValues: {
-      title: product.title,
-      origin: product.origin,
-      harvestDate: product.harvestDate,
-      weight: product.weight,
-      description: product.description,
-      type: product.category,
-    },
-  });
+  } = useForm();
+
+  // 상품 데이터 불러오기
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await api.get(`/produces/${produceId}`);
+        setProduct(response.data);
+        reset({
+          title: response.data.title,
+          origin: response.data.origin,
+          harvestDate: response.data.harvestDate,
+          weight: response.data.weight,
+          description: response.data.description,
+          type: response.data.category, // ✅ 수정
+        });
+      } catch (error) {
+        alert("상품을 불러오지 못했습니다.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProduct();
+  }, [produceId, reset]);
 
   const onSubmit = async (data) => {
     try {
-      // 파일명만 추출 (없으면 기존 이미지 사용)
-      let imageName = product.images;
+      const formData = new FormData();
+      formData.append("title", data.title);
+      formData.append("origin", data.origin);
+      formData.append("harvestDate", data.harvestDate);
+      formData.append("weight", String(data.weight));
+      formData.append("description", data.description);
+      formData.append("category", data.category); // ✅ 수정
+
       if (data.images && data.images.length > 0) {
-        imageName = data.images[0].name;
+        formData.append("images", data.images[0]);
       }
 
-      const requestBody = {
-        title: data.title,
-        description: data.description,
-        images: imageName,
-        origin: data.origin,
-        harvestDate: data.harvestDate,
-        weight: String(data.weight),
-        category: data.type,
-      };
+      await api.put(`/produce/${produceId}`, formData);
 
-      await api.put(`/produces/${produceId}`, requestBody);
       alert("수정이 완료되었습니다!");
       navigate(-1);
     } catch (err) {
       alert("수정 실패: " + (err.response?.data?.message || err.message));
     }
   };
+
+  if (loading) return <div>불러오는 중...</div>;
+  if (!product) return <div>상품을 찾을 수 없습니다.</div>;
 
   return (
     <div>
@@ -70,6 +81,7 @@ function ModifyPage() {
             />
             {errors.title && <p>{errors.title.message}</p>}
           </div>
+
           <div>
             <label>생산지</label>
             <input
@@ -77,6 +89,7 @@ function ModifyPage() {
             />
             {errors.origin && <p>{errors.origin.message}</p>}
           </div>
+
           <div>
             <label>생산 연월</label>
             <input
@@ -87,6 +100,7 @@ function ModifyPage() {
             />
             {errors.harvestDate && <p>{errors.harvestDate.message}</p>}
           </div>
+
           <div>
             <label>중량 (kg)</label>
             <input
@@ -99,33 +113,37 @@ function ModifyPage() {
             />
             {errors.weight && <p>{errors.weight.message}</p>}
           </div>
+
           <div>
             <label>설명</label>
             <textarea {...register("description")} />
           </div>
+
           <div>
             <label>농작물 종류</label>
             <select
-              {...register("type", { required: "농작물 종류를 선택해주세요" })}
+              {...register("category", { required: "농작물 종류를 선택해주세요" })} // ✅ 수정
             >
-              <option value="">선택하세요</option>
-              <option value="과일">과일</option>
-              <option value="채소">채소</option>
-              <option value="곡물">곡물</option>
-              <option value="기타">기타</option>
+              <option value="FRUIT">FRUIT</option>
+              <option value="VEGETABLE">VEGETABLE</option>
+              <option value="GRAIN">GRAIN</option>
+              <option value="NONE">NONE</option>
             </select>
-            {errors.type && <p>{errors.type.message}</p>}
+            {errors.category && <p>{errors.category.message}</p>} // ✅ 수정
           </div>
+
           <div>
             <label>사진</label>
             <input type="file" accept="image/*" {...register("images")} />
           </div>
+
           <button
             type="submit"
             className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
           >
             수정 완료
           </button>
+
           <button
             type="button"
             className="ml-2 bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500"

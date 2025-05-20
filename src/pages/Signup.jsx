@@ -13,7 +13,7 @@ function SignupForm() {
   const onSubmit = async (data) => {
     //회원 가입 누르면 실행, 변경 요지 있음
     try {
-      const response = await axios.post(apIurl, data);
+      const response = await axios.post("/api/users/register", data);
       const result = response.data;
 
       alert(result.message);
@@ -50,7 +50,7 @@ function SignupForm() {
             placeholder="Enter your full name"
             className="login-input"
             type="text"
-            {...register("name", { required: "이름은 필수입니다." })}
+            {...register("username", { required: "이름은 필수입니다." })}
           />
           {errors.name && (
             <p className="text-red-500 text-sm">{errors.name.message}</p>

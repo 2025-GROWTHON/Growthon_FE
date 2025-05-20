@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import DeletePop from "../components/DeletePop";
 import api from "../api/axiosInstance";
 
-function SelctProductModify() {
+function SelectProductModify() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user);
   const [userProducts, setUserProducts] = useState([]);
@@ -17,7 +17,7 @@ function SelctProductModify() {
       try {
         const res = await api.get("/produces");
         setUserProducts(
-          res.data.filter((product) => product.userId === user.id)
+          res.data.data.filter((product) => product.userId === Number(user.id))
         );
       } catch (err) {
         alert("상품 목록을 불러오지 못했습니다.");
@@ -63,7 +63,7 @@ function SelctProductModify() {
   // 수정하기 버튼 클릭 시 상세페이지로 이동
   const handleModify = () => {
     if (selectedId) {
-      navigate(`/edit/${selectedId}`);
+      navigate(`/produce/${selectedId}`);
     } else {
       alert("수정할 상품을 선택하세요.");
     }
@@ -108,4 +108,4 @@ function SelctProductModify() {
   );
 }
 
-export default SelctProductModify;
+export default SelectProductModify;

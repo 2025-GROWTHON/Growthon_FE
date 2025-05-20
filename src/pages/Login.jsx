@@ -45,13 +45,13 @@ function Login() {
 
   const handleLogin = async (data) => {
     try {
-      const response = await axios.post("/api/login", data);
+      const response = await axios.post("/api/users/login", data);
 
       const { accessToken, user } = response.data.data; //구조 보니까 토큰이랑 user 위치 달라서 고쳐야 함,
 
       if (accessToken) {
         // 토큰 저장
-        localStorage.setItem("token", accessToken);
+        localStorage.setItem("accessToken", accessToken);
         dispatch(loginSuccess({ user, token: accessToken })); //authSlice에 저장
         alert("로그인 성공 하였습니다.");
       }
