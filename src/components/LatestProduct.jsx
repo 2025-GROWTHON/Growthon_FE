@@ -38,7 +38,7 @@ export default function LatestProducts() {
             <div className="bg-gray-200 h-40 flex items-center justify-center mb-3 overflow-hidden">
               {product.images ? (
                 <img
-                  src={product.images}
+                  src={`http://localhost:8080/images/${product.images}`}
                   alt={product.title}
                   className="object-cover h-full w-full"
                 />

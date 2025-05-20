@@ -97,7 +97,7 @@ export default function CropForm() {
         <div>
           <label className="block mb-1 font-medium">생산 연월</label>
           <input
-            type="month"
+            type="date"
             {...register("harvestDate", {
               required: "생산 연월을 선택해주세요",
             })}
