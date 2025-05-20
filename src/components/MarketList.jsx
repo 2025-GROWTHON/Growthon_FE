@@ -2,6 +2,13 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+// 영문 → 한글 카테고리 매핑 (표시용)
+const categoryNameMap = {
+  FRUIT: "과일",
+  VEGETABLE: "채소",
+  GRAIN: "곡물",
+};
+
 function MarketList() {
   const [products, setProducts] = useState([]);
 
@@ -32,7 +39,7 @@ function MarketList() {
             <div className="border rounded-lg shadow-sm p-4 hover:shadow-md transition bg-white">
               {/* 카테고리 */}
               <span className="inline-block text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded mb-2">
-                {item.category}
+                {categoryNameMap[item.category] || item.category}
               </span>
 
               {/* 이미지 */}
