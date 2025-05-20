@@ -1,8 +1,24 @@
-import mockProducts from '/src/api/mockData';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 function MarketList() {
-  const products = mockProducts;
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios.get('/api/produces')
+      .then((res) => {
+        if (res.data.status === 200) {
+          setProducts(res.data.data);
+          console.log(res.data.message);
+        } else {
+          console.error('API 오류:', res.data.message);
+        }
+      })
+      .catch((err) => {
+        console.error('서버 요청 실패:', err);
+      });
+  }, []);
 
   return (
     <section className="px-6 pb-12">
