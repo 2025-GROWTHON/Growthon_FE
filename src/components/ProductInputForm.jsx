@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
+import api from "../api/axiosInstance";
 
 export default function CropForm() {
   const {
@@ -12,10 +13,7 @@ export default function CropForm() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post(
-        "https://74d2827b-5c6c-4f78-a111-8ee3339c2d7b.mock.pstmn.io/api/produces",
-        data
-      );
+      const response = await api.post("/produce", data);
       let resData = response.data;
       resData = typeof resData === "string" ? JSON.parse(resData) : resData;
       console.log("서버 응답:", resData);

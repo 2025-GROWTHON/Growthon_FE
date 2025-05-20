@@ -1,18 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Myproduct from "../components/Myproduct";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import mockProducts from "../api/mockData";
 import DeletePop from "../components/DeletePop";
+import api from "../api/axiosInstance";
 
 function SelctProductModify() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user);
-  const [userProducts, setUserProducts] = useState(
-    mockProducts.filter((product) => product.userId === 101) // 예시
-  );
+  const [userProducts, setUserProducts] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
   const [showDeletePop, setShowDeletePop] = useState(false);
+
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const res = await api.get("/produces");
+        setUserProducts(
+          res.data.filter((product) => product.userId === user.id)
+        );
+      } catch (err) {
+        alert("상품 목록을 불러오지 못했습니다.");
+      }
+    }
+    if (user?.id) fetchProducts();
+  }, [user]);
 
   // 상품 클릭 시 선택
   const handleSelect = (id) => {
@@ -29,13 +41,18 @@ function SelctProductModify() {
   };
 
   // 삭제 확인
-  const handleDeleteConfirm = () => {
-    setUserProducts((prev) =>
-      prev.filter((item) => item.produceId !== selectedId)
-    ); //이거 뺴고 싶으면 , api 재랜더링 있어야 할듯, 이미 되나?
-    setShowDeletePop(false);
-    setSelectedId(null);
-    // await axios.delete(`/api/produces/${selectedId}`);
+  const handleDeleteConfirm = async () => {
+    try {
+      await api.delete(`/produce/${selectedId}`);
+      setUserProducts((prev) =>
+        prev.filter((item) => item.produceId !== selectedId)
+      );
+      setShowDeletePop(false);
+      setSelectedId(null);
+      alert("삭제가 완료되었습니다.");
+    } catch (err) {
+      alert("삭제 실패: " + (err.response?.data?.message || err.message));
+    }
   };
 
   // 삭제 취소
