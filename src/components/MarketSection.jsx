@@ -1,17 +1,40 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import mockProducts from "/src/api/mockData";
+import axios from "axios";
 
 function MarketSection() {
+  const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const categories = ["모두", "과일", "채소", "곡물"];
+
+  useEffect(() => {
+    axios.get('/api/produces')
+      .then((res) => {
+        if (res.data.status === 200) {
+          setProducts(res.data.data);
+          console.log(res.data.message);
+        } else {
+          console.error('API 오류:', res.data.message);
+        }
+      })
+      .catch((err) => {
+        console.error('서버 요청 실패:', err);
+      });
+  }, []);
+
+  // 카테고리 이름을 백엔드 category 값에 맞춰 매핑 (선택사항)
+  const categoryMap = {
+    "과일": "FRUIT",
+    "채소": "VEGETABLE",
+    "곡물": "GRAIN",
+  };
 
   const filteredProducts =
     selectedCategory === null
       ? []
       : selectedCategory === "모두"
-      ? mockProducts
-      : mockProducts.filter((product) => product.category === selectedCategory);
+      ? products
+      : products.filter((product) => product.category === categoryMap[selectedCategory]);
 
   return (
     <div className="text-center my-10">
@@ -24,8 +47,8 @@ function MarketSection() {
           <button
             key={category}
             onClick={() =>
-              setSelectedCategory((prevCategory) =>
-                prevCategory === category ? null : category
+              setSelectedCategory((prev) =>
+                prev === category ? null : category
               )
             }
             className={`px-4 py-2 font-medium border transition
