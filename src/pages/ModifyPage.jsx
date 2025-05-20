@@ -1,5 +1,4 @@
 import { useNavigate, useParams } from "react-router-dom";
-import mockProducts from "../api/mockData";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
@@ -47,11 +46,9 @@ function ModifyPage() {
         category: data.type,
       };
 
-      await axios.put(
-        `https://74d2827b-5c6c-4f78-a111-8ee3339c2d7b.mock.pstmn.io/api/produces/${produceId}`,
-        requestBody
-      );
+      await api.put(`/produces/${produceId}`, requestBody);
       alert("수정이 완료되었습니다!");
+      navigate(-1);
     } catch (err) {
       alert("수정 실패: " + (err.response?.data?.message || err.message));
     }
