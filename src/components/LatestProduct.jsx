@@ -43,7 +43,7 @@ export default function LatestProducts() {
                   className="object-cover h-full w-full"
                 />
               ) : (
-                <span className="text-gray-500">이미지 없음</span>
+                <span className="text-gray-500">{product.images}</span>
               )}
             </div>
             <div className="font-semibold text-lg mb-1">{product.title}</div>
