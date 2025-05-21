@@ -8,8 +8,6 @@ import KaKaoLoginButton from "../components/KaKaoLoginButton";
 
 function Login() {
   //카카오 로그인
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
@@ -27,11 +25,8 @@ function Login() {
   const handleSuccess = async (res) => {
     const { user, token } = res;
 
-    setUser(user);
-    setToken(token);
-
     localStorage.setItem("user", JSON.stringify(user));
-    localStorage.setItem("token", token);
+    localStorage.setItem("accessToken", token);
 
     dispatch(loginSuccess({ user, token }));
   };

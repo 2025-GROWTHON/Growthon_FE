@@ -14,12 +14,12 @@ export default function CropForm() {
   const onSubmit = async (data) => {
     try {
       const formData = new FormData();
-  
+
       // 1. 이미지 파일 (단일 파일만 처리)
       if (data.images && data.images.length > 0) {
         formData.append("images", data.images[0]);
       }
-  
+
       // 2. JSON 데이터로 request 객체 구성
       const requestPayload = {
         title: data.title,
@@ -28,9 +28,9 @@ export default function CropForm() {
         harvestDate: data.harvestDate,
         weight: data.weight,
         description: data.description,
-        category: data.type, 
+        category: data.type,
       };
-  
+
       // 3. request를 JSON Blob으로 추가
       formData.append(
         "request",
@@ -38,13 +38,13 @@ export default function CropForm() {
           type: "application/json",
         })
       );
-  
+
       const response = await api.post("/produce", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-  
+
       let resData = response.data;
       resData = typeof resData === "string" ? JSON.parse(resData) : resData;
       console.log("서버 응답:", resData);
