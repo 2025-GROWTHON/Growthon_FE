@@ -1,0 +1,8 @@
+.welcome {
+  position: absolute;
+  width: 1440px;
+  height: 492px;
+  left: calc(50% - 1440px/2);
+  top: 71px;
+  background: rgba(255, 219, 192, 0.4);
+}
