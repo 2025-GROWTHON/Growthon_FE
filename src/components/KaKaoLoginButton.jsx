@@ -18,17 +18,21 @@ function KaKaoLoginButton({ onSuccess, onFailure }) {
   const handleLogin = () => {
     if (!ready) return;
     window.Kakao.Auth.login({
-      scope: "profile_nickname, profile_image",
+      scope: "profile_nickname, account_email",
       throughTalk: false,
       success: () =>
         window.Kakao.API.request({
           url: "/v2/user/me",
           success: async (user) => {
+            console.log(user);
+            console.log({
+              kakaoID: user.kakao_account?.email,
+              nickname: user.properties?.nickname,
+            });
             //포스트
             const res = await axios.post("/api/auth/kakao", {
-              kakaoID: user.id,
+              kakaoID: user.kakao_account?.email,
               nickname: user.properties?.nickname,
-              profileimage: user.properties?.profile_image,
             });
             onSuccess(res.data);
           },

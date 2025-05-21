@@ -12,7 +12,7 @@ function Myproduct({ item }) {
         {/* 이미지 */}
         <div className="h-32 bg-gray-100 flex items-center justify-center text-gray-400 text-sm mb-3">
           <img
-            src={item.images}
+            src={`http://localhost:8080/images/${item.images}`}
             alt={item.title}
             className="h-full w-full object-cover"
           />
