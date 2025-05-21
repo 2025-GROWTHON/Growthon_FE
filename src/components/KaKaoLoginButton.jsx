@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import "../App.css";
+import kakaoBtnImg from "../assets/images/kakao-login-btn.png";
 
 function KaKaoLoginButton({ onSuccess, onFailure }) {
   const [ready, setReady] = useState(false);
@@ -42,7 +44,15 @@ function KaKaoLoginButton({ onSuccess, onFailure }) {
     });
   };
 
-  return <button onClick={handleLogin}>카카오로 로그인 시작하기</button>;
+  return (
+    <button onClick={handleLogin} className="kakaoLogin-btn">
+      <img
+        className="kakaoLogin-image "
+        src={kakaoBtnImg}
+        alt="카카오 로그인"
+      />
+    </button>
+  );
 }
 
 export default KaKaoLoginButton;

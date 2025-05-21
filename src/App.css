@@ -1,134 +1,336 @@
 .login-box {
-  position: static;
-  left: 0px;
-  top: 668px;
-  width: 1440px;
-  height: 468px;
-  opacity: 1;
-
+  width: 1155px;
+  height: 476px;
+  background: #fffaf5;
+  border-radius: 40px;
+  border: 1px solid #ffa968;
+  box-sizing: border-box;
+  padding: 80px 80px;
+  margin: auto;
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
-  padding: 60px 170px;
-  gap: 60px;
-  align-self: stretch;
+  gap: 80px;
 }
 .login-title {
-  position: static;
-  left: 0px;
-  top: 0px;
-  width: 520px;
-  height: 48px;
-  opacity: 1;
-
   font-family: Roboto;
-  font-size: 40px;
+  font-size: 36px;
   font-weight: bold;
   line-height: 48px;
-  letter-spacing: 0em;
-
-  color: #000000;
-
-  z-index: 0;
+  text-align: center;
+  color: #50392a;
+  opacity: 1;
+  min-width: 200px;
 }
 
 .login-field {
   position: static;
   left: 0px;
   top: 0px;
-  width: 520px;
+  width: 486px;
   height: 20px;
-  opacity: 1;
+  z-index: 0;
 
-  font-family: Roboto;
-  font-size: 14px;
-  font-weight: 500;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-weight: normal;
   line-height: 20px;
   letter-spacing: 0em;
-
-  color: #000000;
-
-  z-index: 0;
+  /* primary-400 */
+  color: #7a5b47;
+  opacity: 1;
 }
 
 .login-input {
+  /* Child objects in a smart layout frame */
   position: static;
   left: 0px;
-  top: 24px;
-  width: 520px;
-  height: 36px;
-  border-radius: 6px;
-  opacity: 1;
-
+  top: 33px;
+  width: 486px;
+  height: 52px;
+  /* Smart layout */
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 8px 12px;
-  gap: 4px;
+  padding: 16px;
+  gap: 8px;
   align-self: stretch;
-
-  background: #ffffff;
-
-  box-sizing: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-
   z-index: 1;
+  border-radius: 6px;
+  opacity: 1;
+  background: #ffffff;
+  box-sizing: border-box;
+  /* primary-200 */
+  border: 1px solid #ffead9;
 }
 
 .login-box-right {
-  position: static;
-  left: 750px;
-  top: 60px;
-  width: 520px;
-  height: 248px;
-  opacity: 1;
-
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 0px;
-  gap: 40px;
-  flex-grow: 1;
-
-  z-index: 1;
+  gap: 24px;
+  flex: 1;
 }
 
 .login-button {
+  /* Child objects in a smart layout frame */
   position: static;
   left: 0px;
   top: 0px;
-  width: 240px;
-  height: 48px;
-  border-radius: 8px;
-  opacity: 1;
-
+  width: 230px;
+  height: 60px;
+  /* Smart layout */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 12px;
-
-  background: #000000;
-
   z-index: 0;
+  border-radius: 8px;
+  opacity: 1;
+  /* primary-100 */
+  background: #ffa968;
 }
 
 .login-button p {
+  /* Child objects in a smart layout frame */
   position: static;
-  left: 90.5px;
-  top: 12px;
-  width: 59px;
+  left: 91.5px;
+  top: 18px;
+  width: 47px;
   height: 24px;
-  opacity: 1;
+  z-index: 0;
 
   font-family: Roboto;
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
   letter-spacing: 0em;
-
   color: #ffffff;
+  opacity: 1;
+}
 
+.login-box-container {
+  /* Child objects in a smart layout frame */
+  position: static;
+  left: 0px;
+  top: 256px;
+  width: 486px;
+  height: 60px;
+  /* Smart layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 26px;
+  z-index: 1;
+  opacity: 1;
+}
+
+.kakaoLogin-btn {
+  /* Child objects in a smart layout frame */
+  position: static;
+  left: 256px;
+  top: 0px;
+  width: 230px;
+  height: 60px;
+  /* Smart layout */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 12px;
+  z-index: 1;
+  border-radius: 8px;
+  opacity: 1;
+  background: #fee500;
+}
+
+.kakaoLogin-image {
+  position: static;
+  left: 16.5px;
+  top: 6px;
+  width: 197px;
+  height: 48px;
   z-index: 0;
+}
+
+.err-text {
+  position: static; /* 또는 필요에 따라 relative */
+  width: auto;
+  height: auto;
+  margin-top: 8px;
+  font-family: Pretendard;
+  font-size: 13px;
+  color: #ff0000;
+  line-height: 19px;
+  letter-spacing: -0.02em;
+  opacity: 1;
+}
+
+.input-error {
+  /* Child objects in a smart layout frame */
+  position: static;
+  left: 0px;
+  top: 33px;
+  width: 486px;
+  height: 52px;
+  /* Smart layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 16px;
+  gap: 4px;
+  align-self: stretch;
+  z-index: 1;
+  border-radius: 6px;
+  opacity: 1;
+  background: #ffffff;
+  box-sizing: border-box;
+  /* red-500 */
+  border: 1px solid #ff0000;
+}
+
+.loginOrsign-container {
+  width: 100%; /* 가로 전체 */
+  height: 386px; /* 고정 높이 (원하는 값으로) */
+  min-height: unset; /* min-height 필요 없으면 제거 */
+  opacity: 1;
+  background: #ffa968;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0 auto; /* 가운데 정렬 */
+}
+
+.loginOrsign-box {
+  /* position: absolute; */
+  /* left: 170px; */
+  /* top: 193px; */
+  /* width: 1100px; */
+  /* height: 146px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  gap: 50px;
+  flex-grow: 1;
+  width: 100%; /* 필요시 최대너비 제한 */
+  max-width: 700px; /* 예시: 700px */
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.loginnOrsign-title {
+  /* Child objects in a smart layout frame */
+  position: static;
+  left: 290px;
+  top: 0px;
+  width: 520px;
+  height: 48px;
+  z-index: 0;
+  font-family: Pretendard;
+  font-size: 36px;
+  font-weight: normal;
+  line-height: 48px;
+  text-align: center;
+  letter-spacing: 0em;
+  /* primary-300 */
+  color: #fff9f2;
+}
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #fff7ee;
+  overflow-x: hidden;
+}
+
+.lo-si-login-btn {
+  /* Child objects in a smart layout frame */
+  position: static;
+  left: 0px;
+  top: 0px;
+  width: 240px;
+  height: 48px;
+  /* Smart layout */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  z-index: 0;
+  border-radius: 8px;
+  opacity: 1;
+  box-sizing: border-box;
+  /* primary-300 */
+  border: 1px solid #fff9f2;
+}
+.lo-si-login-btn p {
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 24px;
+  letter-spacing: 0em;
+  /* primary-300 */
+  color: #fff9f2;
+}
+
+.lo-si-sinup-btn {
+  /* Child objects in a smart layout frame */
+  position: static;
+  left: 252px;
+  top: 0px;
+  width: 240px;
+  height: 48px;
+  /* Smart layout */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  z-index: 1;
+  border-radius: 8px;
+  opacity: 1;
+  /* primary-300 */
+  background: #fff9f2;
+}
+
+.lo-si-sinup-btn p {
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 24px;
+  letter-spacing: 0em;
+  /* primary-100 */
+  color: #ffa968;
+}
+
+.loginOrsign-btns {
+  /* Child objects in a smart layout frame */
+  position: static;
+  left: 304px;
+  top: 98px;
+  width: 492px;
+  height: 48px;
+  /* Smart layout */
+  display: flex;
+  flex-direction: row;
+  padding: 0px;
+  gap: 12px;
+  z-index: 1;
+  opacity: 1;
+}
+
+.login-signup-bt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 105px; /* 원하는 간격(px)으로 조절 */
 }

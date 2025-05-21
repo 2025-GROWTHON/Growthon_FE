@@ -13,8 +13,16 @@ function Login() {
 
   //앱 시작 시 로컬 스토리지에서 꺼내서 로그인 유지
   useEffect(() => {
+    if (localStorage.getItem("user") == null) {
+      const storedUser = localStorage.getItem("user");
+      const storedToken = localStorage?.getItem("accessToken");
+      if (storedUser && storedToken) {
+        setUser(JSON.parse(storedUser));
+        setToken(storedToken);
+      }
+    }
     const storedUser = localStorage.getItem("user");
-    const storedToken = localStorage.getItem("accessToken");
+    const storedToken = localStorage?.getItem("accessToken");
     if (storedUser && storedToken) {
       setUser(JSON.parse(storedUser));
       setToken(storedToken);
@@ -57,7 +65,7 @@ function Login() {
   };
 
   return (
-    <div className="login-box">
+    <div className="login-box" style={{ marginTop: 105 }}>
       <h1 className="login-title">로그인</h1>
       <form onSubmit={handleSubmit(handleLogin)} className="login-box-right">
         {/* 이메일 */}
@@ -65,7 +73,7 @@ function Login() {
           <label className="login-field">Email</label>
           <input
             placeholder="Enter your email"
-            className="login-input"
+            className={`${errors.email ? " input-error" : "login-input"}`}
             type="email"
             {...register("email", {
               required: "이메일은 필수입니다.",
@@ -76,7 +84,9 @@ function Login() {
             })}
           />
           {errors.email && (
-            <p className="text-red-500 text-sm">{errors.email.message}</p>
+            <div className="err-text">
+              <p>{errors.email.message}</p>
+            </div>
           )}
         </div>
         {/* 비밀번호 */}
@@ -84,7 +94,7 @@ function Login() {
           <label className="login-field">비밀번호</label>
           <input
             placeholder="Create a password"
-            className="login-input"
+            className={`${errors.password ? " input-error" : "login-input"}`}
             type="password"
             {...register("password", {
               required: "비밀번호는 필수입니다.",
@@ -95,14 +105,18 @@ function Login() {
             })}
           />
           {errors.password && (
-            <p className="text-red-500 text-sm">{errors.password.message}</p>
+            <div className="err-text">
+              <p>{errors.password.message}</p>
+            </div>
           )}
         </div>
-        <button type="submit" className="login-button">
-          <p>로그인</p>
-        </button>
+        <div className="login-box-container">
+          <button type="submit" className="login-button">
+            <p>로그인</p>
+          </button>
+          <KaKaoLoginButton onSuccess={handleSuccess} onFailure={setError} />
+        </div>
       </form>
-      <KaKaoLoginButton onSuccess={handleSuccess} onFailure={setError} />
     </div>
   );
 }
