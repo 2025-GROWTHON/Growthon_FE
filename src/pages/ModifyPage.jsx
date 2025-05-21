@@ -42,9 +42,10 @@ function ModifyPage() {
 
   const onSubmit = async (data) => {
     try {
-      let imageName = data.images;
+      const formData = new FormData();
+
       if (data.images && data.images.length > 0) {
-        imageName = data.images[0].name;
+        formData.append("images", data.images[0]);
       }
 
       const requestBody = {
@@ -53,12 +54,24 @@ function ModifyPage() {
         origin: data.origin,
         harvestDate: data.harvestDate,
         category: data.category,
-        images: data.images[0].name,
+        // images: data.images[0].name,
         weight: String(data.weight),
       };// ✅ 수정
+
       console.log(requestBody);
 
-      await api.put(`/produce/${produceId}`, requestBody);
+      formData.append(
+        "request",
+        new Blob([JSON.stringify(requestBody)], {
+          type: "application/json",
+        })
+      );
+
+      await api.put(`/produce/${produceId}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       alert("수정이 완료되었습니다!");
       navigate(-1);
