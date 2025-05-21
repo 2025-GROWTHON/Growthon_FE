@@ -11,6 +11,7 @@ function Login() {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
   const [error, setError] = useState(null);
+  const dispatch = useDispatch();
 
   //앱 시작 시 로컬 스토리지에서 꺼내서 로그인 유지
   useEffect(() => {
@@ -31,11 +32,11 @@ function Login() {
 
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("token", token);
+
+    dispatch(loginSuccess({ user, token }));
   };
 
   //그냥 로그인
-
-  const dispatch = useDispatch();
 
   const {
     register,
