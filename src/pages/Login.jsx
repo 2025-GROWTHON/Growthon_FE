@@ -15,7 +15,7 @@ function Login() {
   //앱 시작 시 로컬 스토리지에서 꺼내서 로그인 유지
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
-    const storedToken = localStorage.getItem("token");
+    const storedToken = localStorage.getItem("accessToken");
     if (storedUser && storedToken) {
       setUser(JSON.parse(storedUser));
       setToken(storedToken);

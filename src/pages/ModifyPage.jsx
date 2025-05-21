@@ -56,7 +56,7 @@ function ModifyPage() {
         category: data.category,
         // images: data.images[0].name,
         weight: String(data.weight),
-      };// ✅ 수정
+      }; // ✅ 수정
 
       console.log(requestBody);
 
@@ -140,7 +140,9 @@ function ModifyPage() {
           <div>
             <label>농작물 종류</label>
             <select
-              {...register("category", { required: "농작물 종류를 선택해주세요" })} // ✅ 수정
+              {...register("category", {
+                required: "농작물 종류를 선택해주세요",
+              })} // ✅ 수정
             >
               <option value="FRUIT">FRUIT</option>
               <option value="VEGETABLE">VEGETABLE</option>
