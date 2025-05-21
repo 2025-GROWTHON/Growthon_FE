@@ -25,9 +25,10 @@ function Login() {
 
   // 로그인 성공 핸들러: user 저장 + localStorage에 영구 보관    한번  더하는 이유는 역할 나누기 (백엔드 보내기 / 로컬 저장 )
   const handleSuccess = async (res) => {
-    const { user, token } = res;
+    const token = res.data.token;
+    const user = res.data;
 
-    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("user", JSON.stringify(user.id));
     localStorage.setItem("accessToken", token);
 
     dispatch(loginSuccess({ user, token }));
