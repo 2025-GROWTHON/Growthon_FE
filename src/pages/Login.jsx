@@ -21,12 +21,6 @@ function Login() {
         setToken(storedToken);
       }
     }
-    const storedUser = localStorage.getItem("user");
-    const storedToken = localStorage?.getItem("accessToken");
-    if (storedUser && storedToken) {
-      setUser(JSON.parse(storedUser));
-      setToken(storedToken);
-    }
   }, []);
 
   // 로그인 성공 핸들러: user 저장 + localStorage에 영구 보관    한번  더하는 이유는 역할 나누기 (백엔드 보내기 / 로컬 저장 )

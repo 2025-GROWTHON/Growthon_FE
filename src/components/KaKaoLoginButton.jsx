@@ -28,13 +28,13 @@ function KaKaoLoginButton({ onSuccess, onFailure }) {
           success: async (user) => {
             console.log(user);
             console.log({
-              kakaoID: user.kakao_account?.email,
-              nickname: user.properties?.nickname,
+              email: user.kakao_account?.email,
+              username: user.properties?.nickname,
             });
             //포스트
             const res = await axios.post("/api/auth/kakao", {
-              kakaoID: user.kakao_account?.email,
-              nickname: user.properties?.nickname,
+              email: user.kakao_account?.email,
+              username: user.properties?.nickname,
             });
             onSuccess(res.data);
           },
