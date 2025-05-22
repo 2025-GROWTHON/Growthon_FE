@@ -41,13 +41,14 @@ function MarketList() {
       : products.filter((product) => product.category === categoryMap[selectedCategory]);
 
   return (
-    <div className="text-center my-10">
-      <h2 className="text-2xl font-bold mb-2">판매되는 농작물</h2>
-      <p className="text-gray-600 mb-6">신선한 농작물 상품들을 만나보세요.</p>
+    <div>
+      <div className = "py-10 bg-[#FFDBC066] md:px-40 text-center">
+        <h2 className="text-3xl font-bold mb-2 mt-5 text-[#4B2E2B] text-left">판매되는 농작물</h2>
+        <p className="text-gray-600 mb-6 text-left">신선한 농작물 상품들을 만나보세요.</p>
 
-      {/* 카테고리 버튼 */}
-      <div className="flex justify-center gap-2 mb-6">
-        {categories.map((category) => (
+        {/* 카테고리 버튼 */}
+        <div className="flex text-left gap-2 mb-10">
+          {categories.map((category) => (
           <button
             key={category}
             onClick={() =>
@@ -65,13 +66,17 @@ function MarketList() {
             {category}
           </button>
         ))}
+        </div>
       </div>
-      <hr className="border-t border-gray-300 mb-6" />
       {/* 필터링된 카드 리스트 */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-6">
+      <div className="md:px-40 bg-[#FFF9F2] text-left pt-10">
+        <h1 className="text-2xl md:text-3xl font-bold text-[#4B2E2B] mb-2">농작물 리스트</h1>
+        <p className="text-gray-600">신선한 농작물 상품들을 만나보세요.</p>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:px-40 gap-6 py-10 bg-[#FFF9F2]">
         {filteredProducts.map((item) => (
           <Link to={`/market/${item.produceId}`} key={item.produceId}>
-            <div className="border rounded-lg shadow-sm p-4 hover:shadow-md transition bg-white text-left">
+            <div className="border rounded-lg shadow-sm p-4 hover:shadow-md transition text-left">
               {/* 카테고리 */}
               <span className="inline-block text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded mb-2">
                 {categoryNameMap[item.category] || item.category}
@@ -90,7 +95,9 @@ function MarketList() {
           </Link>
         ))}
         {filteredProducts.length === 0 && (
-          <div className="col-span-3 text-gray-500 py-10">카테고리에 해당하는 상품이 없습니다.</div>
+          <div className="py-10 bg-[#FFF9F2] text-left text-gray-500">
+            카테고리에 해당하는 상품이 없습니다.
+          </div>
         )}
       </div>
     </div>
