@@ -6,13 +6,15 @@
   border: 1px solid #ffa968;
   box-sizing: border-box;
   padding: 80px 80px;
-  margin: auto;
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 80px;
+  margin: 100px auto;
+  justify-content: space-between;
 }
 .login-title {
+  margin-left: 50px;
+  margin-right: 100px;
   font-family: Roboto;
   font-size: 36px;
   font-weight: bold;
@@ -21,6 +23,7 @@
   color: #50392a;
   opacity: 1;
   min-width: 200px;
+  flex: 1;
 }
 
 .login-field {
@@ -46,7 +49,8 @@
   position: static;
   left: 0px;
   top: 33px;
-  width: 486px;
+  width: 100%;
+  max-width: 486px;
   height: 52px;
   /* Smart layout */
   display: flex;
@@ -68,7 +72,8 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  flex: 1;
+  flex-grow: 2;
+  margin-left: 140px;
 }
 
 .login-button {
@@ -192,7 +197,7 @@
 
 .loginOrsign-container {
   width: 100%; /* 가로 전체 */
-  height: 386px; /* 고정 높이 (원하는 값으로) */
+  height: 500px; /* 고정 높이 (원하는 값으로) */
   min-height: unset; /* min-height 필요 없으면 제거 */
   opacity: 1;
   background: #ffa968;
@@ -333,4 +338,59 @@
   flex-direction: column;
   align-items: center;
   gap: 105px; /* 원하는 간격(px)으로 조절 */
+}
+
+.signup-btn {
+  position: static;
+  left: 0px;
+  top: 379px;
+  width: 486px;
+  height: 60px;
+  /* Smart layout */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  align-self: stretch;
+  z-index: 1;
+  border-radius: 8px;
+  opacity: 1;
+  /* primary-100 */
+  background: #ffa968;
+}
+
+.signup-btn p {
+  /* Child objects in a smart layout frame */
+  position: static;
+  left: 212px;
+  top: 18px;
+  width: 62px;
+  height: 24px;
+  z-index: 0;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  color: #ffffff;
+  opacity: 1;
+}
+
+.productInput-des {
+  /* Child objects in a smart layout frame */
+  position: static;
+  left: 0px;
+  top: 64px;
+  width: 1100px;
+  height: 24px;
+  z-index: 1;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0em;
+  /* primary-300 */
+  color: #fff9f2;
 }

@@ -1,9 +1,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../App.css";
 
 function SignupForm() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -17,6 +19,7 @@ function SignupForm() {
       const result = response.data;
 
       alert(result.message);
+      navigate("/");
     } catch (error) {
       if (error.response) {
         const errData = error.response.data;
@@ -41,11 +44,11 @@ function SignupForm() {
 
   return (
     <div className="login-box">
-      <h1 className="login-title">회원가입</h1>
+      <h1 className="login-title">회원 가입</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="login-box-right">
         {/* 이름 인풋 */}
         <div>
-          <label className="login-field">이름</label>
+          <label className="login-field">Name</label>
           <input
             placeholder="Enter your full name"
             className="login-input"
@@ -77,7 +80,7 @@ function SignupForm() {
         </div>
         {/* 비밀번호 */}
         <div>
-          <label className="login-field">비밀번호</label>
+          <label className="login-field">Password</label>
           <input
             placeholder="Create a password"
             className="login-input"
@@ -94,8 +97,8 @@ function SignupForm() {
             <p className="text-red-500 text-sm">{errors.password.message}</p>
           )}
         </div>
-        <button type="submit" className="login-button">
-          <p>회원가입</p>
+        <button type="submit" className="signup-btn ">
+          <p>SIGN UP</p>
         </button>
       </form>
     </div>

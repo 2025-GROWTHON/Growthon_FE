@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { loginSuccess } from "../store/authSlice";
@@ -22,6 +23,7 @@ function Login() {
       }
     }
   }, []);
+  const navigate = useNavigate();
 
   // 로그인 성공 핸들러: user 저장 + localStorage에 영구 보관    한번  더하는 이유는 역할 나누기 (백엔드 보내기 / 로컬 저장 )
   const handleSuccess = async (res) => {
@@ -32,6 +34,7 @@ function Login() {
     localStorage.setItem("accessToken", token);
 
     dispatch(loginSuccess({ user, token }));
+    navigate("/");
   };
 
   //그냥 로그인
@@ -52,16 +55,17 @@ function Login() {
         // 토큰 저장
         localStorage.setItem("accessToken", accessToken);
         dispatch(loginSuccess({ user, token: accessToken })); //authSlice에 저장
-        alert("로그인 성공 하였습니다.");
+        alert(response.data.message);
+        navigate("/");
       }
     } catch (error) {
-      alert("로그인 실패 하였습니다.");
+      alert(error.response?.data?.message || "로그인에 실패했습니다.");
     }
   };
 
   return (
     <div className="login-box" style={{ marginTop: 105 }}>
-      <h1 className="login-title">로그인</h1>
+      <div className="login-title">로그인</div>
       <form onSubmit={handleSubmit(handleLogin)} className="login-box-right">
         {/* 이메일 */}
         <div>
@@ -86,7 +90,7 @@ function Login() {
         </div>
         {/* 비밀번호 */}
         <div>
-          <label className="login-field">비밀번호</label>
+          <label className="login-field">Password</label>
           <input
             placeholder="Create a password"
             className={`${errors.password ? " input-error" : "login-input"}`}
@@ -107,7 +111,7 @@ function Login() {
         </div>
         <div className="login-box-container">
           <button type="submit" className="login-button">
-            <p>로그인</p>
+            <p>LOGIN</p>
           </button>
           <KaKaoLoginButton onSuccess={handleSuccess} onFailure={setError} />
         </div>
