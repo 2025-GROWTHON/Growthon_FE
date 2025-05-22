@@ -35,7 +35,10 @@ function Header() {
         ) : (
           <button
             className="hover:underline text-sm font-medium text-black"
-            onClick={() => dispatch(logout())}
+            onClick={() => {
+              localStorage.removeItem("accessToken");
+              dispatch(logout());
+            }}
           >
             로그아웃
           </button>

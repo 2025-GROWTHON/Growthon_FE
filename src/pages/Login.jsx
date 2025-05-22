@@ -34,7 +34,6 @@ function Login() {
     localStorage.setItem("accessToken", token);
 
     dispatch(loginSuccess({ user, token }));
-    navigate("/");
   };
 
   //그냥 로그인

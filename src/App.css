@@ -160,9 +160,7 @@
 }
 
 .err-text {
-  position: static; /* 또는 필요에 따라 relative */
-  width: auto;
-  height: auto;
+  min-height: 19px; /* 한 줄 높이만큼 항상 공간 확보 */
   margin-top: 8px;
   font-family: Pretendard;
   font-size: 13px;
@@ -393,4 +391,358 @@
   letter-spacing: 0em;
   /* primary-300 */
   color: #fff9f2;
+}
+
+.inputForm-title {
+  /* Child objects in a smart layout frame */
+  position: static;
+  left: 0px;
+  top: 0px;
+  width: 1100px;
+  height: 48px;
+  z-index: 0;
+
+  font-family: Pretendard;
+  font-size: 36px;
+  font-weight: normal;
+  line-height: 48px;
+  text-align: center;
+  letter-spacing: 0em;
+  /* primary-500 */
+  color: #50392a;
+}
+
+.inputForm-sub {
+  /* Child objects in a smart layout frame */
+  position: static;
+  left: 0px;
+  top: 64px;
+  width: 1100px;
+  height: 24px;
+  z-index: 1;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0em;
+  /* primary-500 */
+  color: #50392a;
+}
+
+.inputForm-field-title {
+  /* Child objects in a smart layout frame */
+  position: static;
+  left: 0px;
+  top: 0px;
+  width: 396px;
+  height: 20px;
+  z-index: 0;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: normal;
+  letter-spacing: -0.03em;
+  /* primary-500 */
+  color: #50392a;
+}
+
+.inputForm-Frame {
+  /* Child objects in a smart layout frame */
+  position: static;
+  left: 0px;
+  top: 0px;
+  width: 948px;
+  height: 474px;
+  /* Smart layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 68px;
+  align-self: stretch;
+  z-index: 0;
+  opacity: 1;
+  margin: 40px;
+}
+
+.inputForm-left {
+  /* Child objects in a smart layout frame */
+  position: static;
+  left: 0px;
+  top: 31px;
+  width: 396px;
+  height: 412px;
+  /* Smart layout */
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  gap: 37px;
+  z-index: 0;
+  opacity: 1;
+}
+
+.inputForm-right {
+  /* Child objects in a smart layout frame */
+  position: static;
+  left: 552px;
+  top: 31.5px;
+  width: 396px;
+  height: 411px;
+  /* Smart layout */
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  gap: 37px;
+  z-index: 2;
+  opacity: 1;
+}
+.inputForm-left select {
+  /* Child objects in a smart layout frame */
+  position: static;
+  left: 0px;
+  top: 30px;
+  width: 397px;
+  height: 45px;
+  z-index: 1;
+  border-radius: 6px;
+  opacity: 1;
+  background: #ffffff;
+  box-sizing: border-box;
+  /* primary-200 */
+  border: 1px solid #ffead9;
+  /* primary-400 */
+  font-family: Pretendard;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: normal;
+  letter-spacing: -0.03em;
+  /* primary-400 */
+  color: #7a5b47;
+}
+
+.inputForm-right input {
+  /* Child objects in a smart layout frame */
+  position: static;
+  left: 0px;
+  top: 30px;
+  width: 397px;
+  height: 45px;
+  z-index: 1;
+  border-radius: 6px;
+  opacity: 1;
+  background: #ffffff;
+  box-sizing: border-box;
+  /* primary-200 */
+  border: 1px solid #ffead9;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: normal;
+  letter-spacing: -0.03em;
+  /* primary-400 */
+  color: #7a5b47;
+  padding: 20px;
+}
+
+.inputForm-left input {
+  /* Child objects in a smart layout frame */
+  position: static;
+  left: 0px;
+  top: 30px;
+  width: 397px;
+  height: 45px;
+  z-index: 1;
+  border-radius: 6px;
+  opacity: 1;
+  background: #ffffff;
+  box-sizing: border-box;
+  /* primary-200 */
+  border: 1px solid #ffead9;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: normal;
+  letter-spacing: -0.03em;
+  /* primary-400 */
+  color: #7a5b47;
+  padding: 20px;
+}
+.inputForm-right input:focus {
+  border-radius: 6px;
+  opacity: 1;
+  background: #ffffff;
+  box-sizing: border-box;
+  /* primary-100 */
+  border: 1px solid #ffa968;
+  outline: none;
+}
+.inputForm-left input:focus {
+  border-radius: 6px;
+  opacity: 1;
+  background: #ffffff;
+  box-sizing: border-box;
+  /* primary-100 */
+  border: 1px solid #ffa968;
+  outline: none;
+}
+.inputForm-right textarea:focus {
+  border-radius: 6px;
+  opacity: 1;
+  background: #ffffff;
+  box-sizing: border-box;
+  /* primary-100 */
+  border: 1px solid #ffa968;
+  outline: none;
+}
+
+.filebox .upload-name {
+  /* Child objects in a smart layout frame */
+  position: static;
+  left: 0px;
+  top: 0px;
+  width: 288px;
+  height: 45px;
+  /* Smart layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 20px;
+  gap: 10px;
+  z-index: 0;
+  border-radius: 6px;
+  opacity: 1;
+  background: #ffffff;
+  box-sizing: border-box;
+  color: #bcada3;
+  /* primary-200 */
+  border: 1px solid #ffead9;
+}
+.filebox label {
+  /* Child objects in a smart layout frame */
+  position: static;
+  left: 297px;
+  top: 0.19px;
+  width: 99.17px;
+  height: 44.63px;
+  /* Smart layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 13px 23px;
+  gap: 10px;
+  z-index: 1;
+  border-radius: 6px;
+  opacity: 1;
+  /* primary-100 */
+  background: #ffa968;
+}
+.filebox label p {
+  font-family: Pretendard;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: normal;
+  letter-spacing: -0.03em;
+  /* primary-300 */
+  color: #fff9f2;
+}
+.filebox input[type="file"] {
+  position: absolute;
+  width: 0;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+}
+
+.filebox {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* 간격 조절 */
+}
+.inputForm-stick {
+  position: static;
+  left: 10px;
+  top: 10px;
+  width: 0px;
+  height: 380px;
+  z-index: 0;
+  opacity: 0.5;
+  /* primary-200 */
+  border: 1px solid #ffead9;
+}
+
+.filebox .upload-name:focus {
+  border: 1.5px solid #ffa968; /* 테두리 색상 */
+  background: #fffbe9; /* 배경색 */
+  outline: none; /* 기본 아웃라인 제거(선택) */
+}
+
+.inputForm-tisub {
+  /* Child objects in a smart layout frame */
+  position: static;
+  left: 0px;
+  top: 0px;
+  width: 1100px;
+  height: 88px;
+  /* Smart layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 16px;
+  align-self: stretch;
+  z-index: 0;
+}
+
+.inputForm-pg {
+  /* Child objects in a smart layout frame */
+  position: static;
+  left: 25px;
+  top: 0px;
+  width: 1100px;
+  height: 728px;
+  /* Smart layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  gap: 54px;
+  z-index: 0;
+  margin: 150px;
+}
+
+.inputForm-submit-btn {
+  position: absolute;
+  width: 396px;
+  height: 50px;
+  border-radius: 6px;
+  opacity: 1;
+  /* primary-100 */
+  background: #ffa968;
+}
+
+.inputForm-submit-btn p {
+  position: absolute;
+  left: 176.22px;
+  top: 15px;
+  width: 43.56px;
+  height: 20px;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: normal;
+  text-align: center;
+  letter-spacing: -0.03em;
+  /* primary-300 */
+  color: #fff9f2;
+}
+
+.input-error {
+  border-radius: 6px;
+  opacity: 1;
+  background: #ffffff;
+  box-sizing: border-box;
+  border: 1px solid #ff0000 !important;
 }
