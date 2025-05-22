@@ -24,10 +24,10 @@ export default function LatestProducts() {
   }, []);
 
   return (
-    <div className="my-10 text-center">
-      <h2 className="text-2xl font-bold mb-2">최근 등록된 상품</h2>
-      <p className="text-gray-600 mb-6">가장 최근에 업로드된 농작물을 확인해보세요.</p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-8">
+    <div className="py-10 text-center bg-[#FFF9F2]">
+      <h2 className="text-2xl font-bold mb-2 md:px-40 text-left">최신 상품</h2>
+      <p className="text-gray-600 mb-6 md:px-40 text-left">고품질의 농작물을 확인하세요.</p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-8 md:px-40 text-left">
         {products.map((product) => (
           <div
             key={product.produceId}
