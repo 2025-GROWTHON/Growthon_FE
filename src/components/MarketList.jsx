@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import allIcon from "../assets/all.svg";
+import fruitIcon from "../assets/fruit.svg";
+import vegetableIcon from "../assets/vegetable.svg";
+import grainIcon from "../assets/grain.svg";
 
 // 영문 → 한글 카테고리 매핑 (표시용)
 const categoryNameMap = {
@@ -13,6 +17,13 @@ const categoryMap = {
   "과일": "FRUIT",
   "채소": "VEGETABLE",
   "곡물": "GRAIN",
+};
+
+const categoryIcons = {
+  "모두": allIcon,
+  "과일": fruitIcon,
+  "채소": vegetableIcon,
+  "곡물": grainIcon,
 };
 
 function MarketList() {
@@ -50,23 +61,38 @@ function MarketList() {
         {/* 카테고리 버튼 */}
         <div className="flex text-left gap-2 mb-10">
           {categories.map((category) => (
-          <button
-            key={category}
-            onClick={() =>
-              setSelectedCategory((prev) =>
-                prev === category ? "모두" : category
-              )
-            }
-            className={`px-4 py-2 font-medium border transition
-              ${
-                selectedCategory === category
-                  ? "bg-black text-white"
-                  : "bg-gray-100 text-black hover:bg-gray-200"
-              }`}
-          >
-            {category}
-          </button>
-        ))}
+            <button
+              key={category}
+              onClick={() =>
+                setSelectedCategory((prev) =>
+                  prev === category ? "모두" : category
+                )
+              }
+              className={`px-4 py-2 font-medium flex flex-col items-center gap-1 transition
+                ${
+                  selectedCategory === category
+                    ? "bg-[#FFA968] text-white"
+                    : "text-[#FFA968] hover:bg-gray-200"
+                }`}
+              style={{
+                width: 70,
+                minHeight: 70,
+                justifyContent: "center",
+                border: "1px solid #FFA968",
+                borderRadius: 8,
+              }}
+            >
+              <img
+                src={categoryIcons[category]}
+                alt={category}
+                className="w-7 h-7 mb-1"
+                style={{
+                  filter: selectedCategory === category ? "brightness(0) invert(1)" : "none"
+                }}
+              />
+              <span className="text-xs">{category}</span>
+            </button>
+          ))}
         </div>
       </div>
       {/* 필터링된 카드 리스트 */}
@@ -77,16 +103,42 @@ function MarketList() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:px-40 gap-4 py-10 bg-[#FFF9F2]">
         {filteredProducts.map((item) => (
           <Link to={`/market/${item.produceId}`} key={item.produceId}>
-            <div className="border rounded-xl shadow-sm hover:shadow-md transition text-left p-4">
-              <div className="relative w-full h-[200px] rounded-lg overflow-hidden mb-4">
-                <img src={`http://localhost:8080/images/${item.images}`} alt={item.title} className="w-full h-full object-cover" />
-                <span className="absolute top-2 left-2 text-xs text-white px-2 py-1 rounded bg-green-300 bg-opacity-80">
+            <div
+              className="flex flex-col transition"
+              style={{
+                width: 338,
+                height: 410,
+                gap: 10,
+                borderRadius: 15,
+                paddingTop: 17,
+                paddingRight: 20,
+                paddingBottom: 17,
+                paddingLeft: 20,
+                boxShadow: "0 4px 16px 0 #BB8D6C33",
+                border: "1px solid #e5e7eb",
+                boxSizing: "border-box",
+              }}
+            >
+              <div className="relative w-[298px] h-[298px] bg-gray-200 flex items-center justify-center mb-3 overflow-hidden rounded-[10px]">
+                {item.images ? (
+                  <img
+                    src={`http://localhost:8080/images/${item.images}`}
+                    alt={item.title}
+                    className="object-cover w-full h-full"
+                  />
+                ) : (
+                  <span className="text-gray-500">{`http://localhost:8080/images/${item.images}`}</span>
+                )}
+                <span
+                  className="absolute top-0 left-0 px-3 py-1 text-xs font-semibold rounded-br bg-[#FFA968] bg-opacity-90 text-white shadow"
+                  style={{ letterSpacing: "0.02em", borderTopLeftRadius: 0, borderBottomRightRadius: 8 }}
+                >
                   {categoryNameMap[item.category] || item.category}
                 </span>
               </div>
-              <h3 className="text-[#4B2E2B] font-medium text-sm mb-1">{item.title}</h3>
+              <h3 className="font-medium text-[#7A5B47] mb-0">{item.title}</h3>
               <p className="text-sm text-[#4B2E2B]">
-                <span className="font-bold">{item.price.toLocaleString()}원</span>
+                <span className="font-bold text-[#7A5B47]">{item.price.toLocaleString()}원</span>
               </p>
             </div>
           </Link>

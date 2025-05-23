@@ -6,6 +6,13 @@ export default function LatestProducts() {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
 
+  // 카테고리 한글 매핑
+  const categoryNameMap = {
+    VEGETABLE: "채소",
+    GRAIN: "곡물",
+    FRUIT: "과일",
+  };
+
   useEffect(() => {
     axios.get('/api/produces')
       .then((res) => {
@@ -31,23 +38,43 @@ export default function LatestProducts() {
         {products.map((product) => (
           <div
             key={product.produceId}
-            className="border rounded-lg shadow p-6 text-left min-h-[260px] flex flex-col justify-between cursor-pointer hover:shadow-lg transition"
+            className="flex flex-col transition"
+            style={{
+              width: 338,
+              height: 410,
+              gap: 10,
+              borderRadius: 15,
+              paddingTop: 17,
+              paddingRight: 20,
+              paddingBottom: 17,
+              paddingLeft: 20,
+              boxShadow: "0 4px 16px 0 #BB8D6C33",
+              border: "1px solid #e5e7eb",
+              boxSizing: "border-box",
+            }}
             onClick={() => navigate(`/market/${product.produceId}`)}
           >
-            <div className="text-sm text-gray-400 mb-1">{product.category}</div>
-            <div className="bg-gray-200 h-40 flex items-center justify-center mb-3 overflow-hidden">
+            <div className="relative w-[298px] h-[298px] bg-gray-200 flex items-center justify-center mb-3 overflow-hidden rounded-[10px]">
               {product.images ? (
                 <img
                   src={`http://localhost:8080/images/${product.images}`}
                   alt={product.title}
-                  className="object-cover h-full w-full"
+                  className="object-cover w-full h-full"
                 />
               ) : (
                 <span className="text-gray-500">{`http://localhost:8080/images/${product.images}`}</span>
               )}
+              <span
+                className="absolute top-0 left-0 px-3 py-1 text-xs font-semibold rounded-br bg-[#FFA968] bg-opacity-90 text-white shadow"
+                style={{ letterSpacing: "0.02em", borderTopLeftRadius: 0, borderBottomRightRadius: 8 }}
+              >
+                {categoryNameMap[product.category] || product.category}
+              </span>
             </div>
-            <div className="font-semibold text-[#4B2E2B] text-lg mb-1">{product.title}</div>
-            <div className="text-sm text-[#4B2E2B]">{product.price.toLocaleString()}원</div>
+            <h3 className="font-medium text-[#7A5B47]">{product.title}</h3>
+            <p className="text-sm text-[#4B2E2B]">
+              <span className="font-bold text-[#7A5B47]">{product.price.toLocaleString()}원</span>
+            </p>
           </div>
         ))}
       </div>

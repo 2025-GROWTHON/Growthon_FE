@@ -54,8 +54,6 @@ export default function FarmList() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {farms.map((farm) => (
           <Link
-            to={`/market/${farm.id}`}
-            key={farm.id}
             className="flex flex-col items-center transition"
             style={{
               width: 338,
@@ -82,14 +80,19 @@ export default function FarmList() {
             <div className="flex items-center gap-2 mt-2">
               <h3 className="font-medium text-[#7A5B47] mb-0">{farm.name}</h3>
               <button
-                className="text-sm px-4 py-2 border rounded" 
+                className="text-sm px-4 py-2 border rounded"
                 style={{
                   borderColor: "#FFA968",
                   color: "#FFA968",
                 }}
-                onClick={(e) => {
+                onClick={e => {
                   e.preventDefault();
-                  window.open('https://pf.kakao.com/_xmzUin/chat', '_blank');
+                  if (farm.name === "행복 농장") {
+                    window.open("http://pf.kakao.com/_PjqSn/chat", "_blank");
+                  }
+                  if (farm.name === "황금 농장") {
+                    window.open("http://pf.kakao.com/_RxlqSn/chat", "_blank");
+                  }
                 }}
               >
                 문의하기
