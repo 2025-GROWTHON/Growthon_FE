@@ -34,7 +34,6 @@ export default function ProductDetail() {
   return (
     <div>
       <ProductSummary product={product} />
-      <hr className="border-t border-gray-300 mb-6" />
       <ProductDescription product={product} />
     </div>
   );

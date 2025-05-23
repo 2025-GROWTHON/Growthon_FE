@@ -2,13 +2,50 @@ import FarmList from '../components/FarmList.jsx';
 
 export default function Contact() {
   return (
-    <div>
+    <div className = "bg-[#FFA968]">
       <FarmList />
-      <hr className="border-t border-gray-300 mb-6" />
-      <section className="text-left mt-12 px-6 pb-20">
-        <h2 className="text-xl font-bold mb-2">문의하기</h2>
-        <p className="text-sm text-gray-500 mb-4">Farm2You에 문의해주세요.</p>
-        <button className="px-6 py-2 bg-black text-white rounded">문의하기</button>
+      <section
+        className="text-left"
+        style={{
+          width: 1440,
+          height: 250,
+          paddingTop: 70,
+          paddingRight: 183,
+          paddingLeft: 183,
+          borderBottomWidth: 1,
+          borderBottomStyle: "solid",
+          borderBottomColor: "#e5e7eb",
+          boxSizing: "border-box",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
+          <h2 className="text-3xl font-bold text-[#FFFFFF] mb-0" style={{ marginTop: "10px" }} >문의하기</h2>
+          <button
+            className="text-white text-xl rounded"
+            style={{
+              width: 246,
+              height: 55,
+              borderRadius: 10,
+              borderWidth: 1,
+              borderStyle: "solid",
+              borderColor: "#fff",
+              color: "#fff",
+              cursor: "pointer",
+              marginTop: "10px", // 버튼만 아래로 내림
+            }}
+            onClick={() => window.open('https://pf.kakao.com/_xmzUin', '_blank')}
+          >
+            문의하기
+          </button>
+        </div>
+        <p
+          className="text-sm text-white"
+          style={{ marginTop: "-8px" }} // 글자만 위로 올림, 값은 조정 가능
+        >
+          Farm2You에 문의해 주세요.
+        </p>
       </section>
     </div>
   );
