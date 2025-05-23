@@ -73,23 +73,19 @@ function MarketList() {
         <h1 className="text-2xl md:text-3xl font-bold text-[#4B2E2B] mb-2">농작물 리스트</h1>
         <p className="text-gray-600">신선한 농작물 상품들을 만나보세요.</p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:px-40 gap-6 py-10 bg-[#FFF9F2]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:px-40 gap-4 py-10 bg-[#FFF9F2]">
         {filteredProducts.map((item) => (
           <Link to={`/market/${item.produceId}`} key={item.produceId}>
-            <div className="border rounded-lg shadow-sm p-4 hover:shadow-md transition text-left">
-              {/* 카테고리 */}
-              <span className="inline-block text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded mb-2">
-                {categoryNameMap[item.category] || item.category}
-              </span>
-              {/* 이미지 */}
-              <div className="h-32 bg-gray-100 flex items-center justify-center text-gray-400 text-sm mb-3">
-                <img src={item.images} alt={item.title} className="h-full w-full object-cover" />
+            <div className="border rounded-xl shadow-sm hover:shadow-md transition text-left p-4">
+              <div className="relative w-full h-[200px] rounded-lg overflow-hidden mb-4">
+                <img src={`http://localhost:8080/images/${item.images}`} alt={item.title} className="w-full h-full object-cover" />
+                <span className="absolute top-2 left-2 text-xs text-white px-2 py-1 rounded bg-green-300 bg-opacity-80">
+                  {categoryNameMap[item.category] || item.category}
+                </span>
               </div>
-              {/* 상품 이름 */}
-              <h3 className="font-medium mb-1">{item.title}</h3>
-              {/* 가격 */}
+              <h3 className="font-medium text-sm mb-1">{item.title}</h3>
               <p className="text-sm text-gray-700">
-                가격: <span className="font-bold">{item.price.toLocaleString()}원</span>
+                <span className="font-bold">{item.price.toLocaleString()}원</span>
               </p>
             </div>
           </Link>

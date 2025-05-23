@@ -1,6 +1,6 @@
 export default function ProductSummary({ product }) {
   return (
-    <section className="flex gap-[60px] items-center py-10 px-40 bg-[#FFDBC066]">
+    <section className="flex gap-[60px] items-center py-20 px-40 bg-[#FFDBC066]">
       <div
         className="flex items-center justify-center bg-gray-100"
         style={{
@@ -34,10 +34,10 @@ export default function ProductSummary({ product }) {
           </p>
         </div>
         <div className="flex gap-4 mt-10">
-          <button className="border border-[#FFA96B] text-[#FFA96B] px-10 py-2 rounded-md hover:bg-[#FFF0E6] transition min-w-[160px]">
+          <button className="border border-[#FFA96B] text-[#FFA96B] px-20 py-2 rounded-md hover:bg-[#FFF0E6] transition min-w-[160px]">
             구매하기
           </button>
-          <button className="bg-[#FFA96B] text-white px-10 py-2 rounded-md hover:bg-[#ff944d] transition min-w-[160px]">
+          <button className="bg-[#FFA96B] text-white px-20 py-2 rounded-md hover:bg-[#ff944d] transition min-w-[160px]">
             문의하기
           </button>
         </div>
