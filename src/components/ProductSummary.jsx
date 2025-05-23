@@ -34,10 +34,16 @@ export default function ProductSummary({ product }) {
           </p>
         </div>
         <div className="flex gap-4 mt-10">
-          <button className="border border-[#FFA96B] text-[#FFA96B] px-20 py-2 rounded-md hover:bg-[#FFEAD9] transition min-w-[160px]">
+          <button
+            className="border border-[#FFA96B] text-[#FFA96B] px-20 py-2 rounded-md hover:bg-[#FFEAD9] transition min-w-[160px]"
+            onClick={() => window.open("https://pf.kakao.com/_xmzUin/chat", "_blank")}
+          >
             구매하기
           </button>
-          <button className="bg-[#FFA96B] text-white px-20 py-2 rounded-md hover:bg-[#ff944d] transition min-w-[160px]">
+          <button
+            className="bg-[#FFA96B] text-white px-20 py-2 rounded-md hover:bg-[#ff944d] transition min-w-[160px]"
+            onClick={() => window.open("https://pf.kakao.com/_xmzUin/chat", "_blank")}
+          >
             문의하기
           </button>
         </div>
