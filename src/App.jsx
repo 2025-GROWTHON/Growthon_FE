@@ -43,7 +43,7 @@ function App() {
         <Route path="/produce" element={<SelctProductModify />} />
         <Route path="/produce/:produceId" element={<ModifyPage />} />
       </Routes>
-      {/* <Footer />*/}
+      <Footer />
     </>
   );
 }

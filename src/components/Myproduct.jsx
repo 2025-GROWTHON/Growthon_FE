@@ -9,10 +9,11 @@ function Myproduct({ item }) {
           <div className="myProduct-card-category">{item.category}</div>
 
           {/* 이미지 */}
-          <div>
+          <div className="myProduct-image-bg">
             <img
               src={`http://localhost:8080/images/${item.images}`}
               alt={item.title}
+              className="myProduct-image"
             />
           </div>
         </div>

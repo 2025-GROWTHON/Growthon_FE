@@ -110,10 +110,8 @@ function SelectProductModify() {
           <li
             key={item.produceId}
             style={{
-              border:
-                selectedId === item.produceId
-                  ? "2px solid green"
-                  : "1px solid #ccc",
+              border: selectedId === item.produceId ? "2px solid green" : "",
+              borderRadius: selectedId === item.produceId ? "15px;" : "15px",
               cursor: "pointer",
               marginBottom: "8px",
             }}

@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import api from "../api/axiosInstance";
 
 function ModifyPage() {
@@ -8,6 +8,19 @@ function ModifyPage() {
   const { produceId } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const formTopRef = useRef(null);
+  const [fileName, setFileName] = useState("첨부파일");
+
+  const handleFileChange = (e) => {
+    if (formTopRef.current) {
+      formTopRef.current.scrollIntoView({ behavior: "auto" });
+    }
+    if (e.target.files.length > 0) {
+      setFileName(e.target.files[0].name);
+    } else {
+      setFileName("첨부파일");
+    }
+  };
 
   const {
     register,
@@ -49,12 +62,13 @@ function ModifyPage() {
       }
 
       const requestBody = {
+        price: data.price,
         title: data.title,
         description: data.description,
         origin: data.origin,
         harvestDate: data.harvestDate,
         category: data.category,
-        // images: data.images[0].name,
+        images: data.images[0].name,
         weight: String(data.weight),
       }; // ✅ 수정
 
@@ -84,93 +98,152 @@ function ModifyPage() {
   if (!product) return <div>상품을 찾을 수 없습니다.</div>;
 
   return (
-    <div>
-      <div>
-        <p>------------------------------------</p>
-        <h4>농작물 정보 수정</h4>
-        <p>선택된 농작물의 정보를 수정하세요</p>
-      </div>
-      <div>
+    <div className="login-page">
+      <div className="inputForm-pg">
+        <div className="inputForm-tisub ">
+          <h2 className="inputForm-title">농작물 정보 수정</h2>
+          <p className="inputForm-sub">선택된 농작물의 정보를 수정하세요</p>
+        </div>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div>
-            <label>농작물 이름</label>
-            <input
-              {...register("title", { required: "농작물 이름을 입력해주세요" })}
-            />
-            {errors.title && <p>{errors.title.message}</p>}
+          <div className="inputForm-Frame">
+            <div className="inputForm-left">
+              <div>
+                <label>
+                  <p className="inputForm-field-title">농작물 이름</p>
+                </label>
+                <input
+                  {...register("title", {
+                    required: "농작물 이름을 입력해주세요",
+                  })}
+                />
+                {errors.title && <p>{errors.title.message}</p>}
+              </div>
+
+              <div>
+                <label>
+                  <p className="inputForm-field-title">생산지</p>
+                </label>
+                <input
+                  {...register("origin", { required: "생산지를 입력해주세요" })}
+                />
+                {errors.origin && (
+                  <p className="err-text">{errors.origin.message}</p>
+                )}
+              </div>
+
+              <div>
+                <label>
+                  <p className="inputForm-field-title">이미지</p>
+                </label>
+                <div className="filebox">
+                  <input
+                    className={`upload-name ${
+                      errors.images ? "input-error" : ""
+                    }`}
+                    value={fileName}
+                    placeholder="이미지를 업로드해 주세요."
+                    readOnly
+                  />
+                  <label htmlFor="file">
+                    <p>파일 선택</p>
+                  </label>
+                  <input
+                    type="file"
+                    id="file"
+                    accept="image/*"
+                    {...register("images", {
+                      required: "이미지를 첨부해주세요",
+                      onChange: handleFileChange,
+                    })}
+                  />
+                </div>
+                <label>
+                  <p className="inputForm-field-title">농작물 종류</p>
+                </label>
+                <select
+                  {...register("category", {
+                    required: "농작물 종류를 선택해주세요",
+                  })}
+                  className="w-full border p-2 rounded"
+                >
+                  <option value="FRUIT">FRUIT</option>
+                  <option value="VEGETABLE">VEGETABLE</option>
+                  <option value="GRAIN">GRAIN</option>
+                </select>
+                {errors.category && <p>{errors.category.message}</p>}
+              </div>
+            </div>
+            <div className="inputForm-stick"></div>
+            <div className="inputForm-right">
+              {/* 가격 */}
+              <div>
+                <label>
+                  <p className="inputForm-field-title">가격</p>
+                </label>
+                <input
+                  placeholder="예) 10,000원"
+                  type="number"
+                  {...register("price", {
+                    required: "가격을 입력해주세요",
+                    min: 0,
+                  })}
+                />
+                {errors.price && (
+                  <p className="err-text">{errors.price.message}</p>
+                )}
+              </div>
+              <div>
+                <label>
+                  <p className="inputForm-field-title">생산 연월</p>
+                </label>
+                <input
+                  type="date"
+                  {...register("harvestDate", {
+                    required: "생산 연월을 선택해주세요",
+                  })}
+                />
+                {errors.harvestDate && <p>{errors.harvestDate.message}</p>}
+              </div>
+
+              <div>
+                <label>
+                  <p className="inputForm-field-title">중량</p>
+                </label>
+                <input
+                  type="number"
+                  step="0.1"
+                  {...register("weight", {
+                    required: "중량을 입력해주세요",
+                    min: 0,
+                  })}
+                />
+
+                {errors.weight && <p>{errors.weight.message}</p>}
+              </div>
+
+              <div>
+                <label>
+                  <p className="inputForm-field-title">설명</p>
+                </label>
+                <textarea {...register("description")} />
+              </div>
+            </div>
           </div>
+          <div className="grid place-items-center">
+            <div className="loginOrsign-btns ">
+              <button type="submit" className="modify-delete-btn">
+                <p>수정완료</p>
+              </button>
 
-          <div>
-            <label>생산지</label>
-            <input
-              {...register("origin", { required: "생산지를 입력해주세요" })}
-            />
-            {errors.origin && <p>{errors.origin.message}</p>}
+              <button
+                type="button"
+                className="modify-btn"
+                onClick={() => navigate(-1)}
+              >
+                <p>수정취소</p>
+              </button>
+            </div>
           </div>
-
-          <div>
-            <label>생산 연월</label>
-            <input
-              type="date"
-              {...register("harvestDate", {
-                required: "생산 연월을 선택해주세요",
-              })}
-            />
-            {errors.harvestDate && <p>{errors.harvestDate.message}</p>}
-          </div>
-
-          <div>
-            <label>중량 (kg)</label>
-            <input
-              type="number"
-              step="0.1"
-              {...register("weight", {
-                required: "중량을 입력해주세요",
-                min: 0,
-              })}
-            />
-            {errors.weight && <p>{errors.weight.message}</p>}
-          </div>
-
-          <div>
-            <label>설명</label>
-            <textarea {...register("description")} />
-          </div>
-
-          <div>
-            <label>농작물 종류</label>
-            <select
-              {...register("category", {
-                required: "농작물 종류를 선택해주세요",
-              })} // ✅ 수정
-            >
-              <option value="FRUIT">FRUIT</option>
-              <option value="VEGETABLE">VEGETABLE</option>
-              <option value="GRAIN">GRAIN</option>
-              <option value="NONE">NONE</option>
-            </select>
-            {errors.category && <p>{errors.category.message}</p>} // ✅ 수정
-          </div>
-
-          <div>
-            <label>사진</label>
-            <input type="file" accept="image/*" {...register("images")} />
-          </div>
-
-          <button
-            type="submit"
-            className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-          >
-            수정 완료
-          </button>
-
-          <button
-            type="button"
-            className="ml-2 bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500"
-            onClick={() => navigate(-1)}
-          >
-            수정 취소
-          </button>
         </form>
       </div>
     </div>
