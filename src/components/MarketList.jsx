@@ -72,7 +72,7 @@ function MarketList() {
                 ${
                   selectedCategory === category
                     ? "bg-[#FFA968] text-white"
-                    : "text-[#FFA968] hover:bg-gray-200"
+                    : "text-[#FFA968] hover:bg-[#FFEAD9]"
                 }`}
               style={{
                 width: 70,

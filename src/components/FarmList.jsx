@@ -80,7 +80,7 @@ export default function FarmList() {
             <div className="flex items-center gap-2 mt-2">
               <h3 className="font-medium text-[#7A5B47] mb-0">{farm.name}</h3>
               <button
-                className="text-sm px-4 py-2 border rounded"
+                className="text-sm px-4 py-2 border rounded transition-colors duration-150 hover:bg-[#FFEAD9]"
                 style={{
                   borderColor: "#FFA968",
                   color: "#FFA968",
