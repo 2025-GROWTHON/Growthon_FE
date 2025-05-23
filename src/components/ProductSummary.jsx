@@ -15,7 +15,7 @@ export default function ProductSummary({ product }) {
         }}
       >
         <img
-          src={product.images}
+          src={`http://localhost:8080/images/${product.images}`}
           alt={product.title}
           className="object-cover w-full h-full"
           style={{ borderRadius: 15 }}

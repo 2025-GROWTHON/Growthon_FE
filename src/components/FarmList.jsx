@@ -37,8 +37,8 @@ export default function FarmList() {
             className="border rounded-lg shadow-sm p-4 bg-white flex flex-col items-center hover:shadow-md transition"
           >
             <div className="w-full h-32 bg-gray-100 flex items-center justify-center text-gray-400 mb-3">
-              {farm.image ? (
-                <img src={farm.image} alt={farm.name} className="object-cover h-full w-full" />
+              {`http://localhost:8080/images/${farm.images}` ? (
+                <img src={`http://localhost:8080/images/${farm.images}`} alt={farm.name} className="object-cover h-full w-full" />
               ) : (
                 "농장"
               )}

@@ -25,8 +25,8 @@ export default function LatestProducts() {
 
   return (
     <div className="py-10 text-center bg-[#FFF9F2]">
-      <h2 className="text-2xl font-bold mb-2 md:px-40 text-left">최신 상품</h2>
-      <p className="text-gray-600 mb-6 md:px-40 text-left">고품질의 농작물을 확인하세요.</p>
+      <h2 className="text-2xl font-bold mb-2 md:px-40 text-[#4B2E2B] text-left">최신 상품</h2>
+      <p className="text-gray-600 mb-6 md:px-40 text-[#4B2E2B] text-left">고품질의 농작물을 확인하세요.</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-8 md:px-40 text-left">
         {products.map((product) => (
           <div
@@ -38,16 +38,16 @@ export default function LatestProducts() {
             <div className="bg-gray-200 h-40 flex items-center justify-center mb-3 overflow-hidden">
               {product.images ? (
                 <img
-                  src={product.images}
+                  src={`http://localhost:8080/images/${product.images}`}
                   alt={product.title}
                   className="object-cover h-full w-full"
                 />
               ) : (
-                <span className="text-gray-500">{product.images}</span>
+                <span className="text-gray-500">{`http://localhost:8080/images/${product.images}`}</span>
               )}
             </div>
-            <div className="font-semibold text-lg mb-1">{product.title}</div>
-            <div className="text-sm text-gray-600">₩{product.price.toLocaleString()}</div>
+            <div className="font-semibold text-[#4B2E2B] text-lg mb-1">{product.title}</div>
+            <div className="text-sm text-[#4B2E2B]">{product.price.toLocaleString()}원</div>
           </div>
         ))}
       </div>
