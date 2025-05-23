@@ -53,48 +53,76 @@ function MarketList() {
 
   return (
     <div>
-      <div className = "py-10 bg-[#FFDBC066] md:px-40 text-center">
-        <span className="block px-0"><img src="src/assets/carrot.png"></img></span>
-        <h2 className="text-3xl font-bold mb-2 text-[#4B2E2B] text-left">판매되는 농작물</h2>
-        <p className="text-[#7A5B47] mb-6 text-left">신선한 농작물 상품들을 만나보세요.</p>
-
-        {/* 카테고리 버튼 */}
-        <div className="flex text-left gap-2 mb-10">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() =>
-                setSelectedCategory((prev) =>
-                  prev === category ? "모두" : category
-                )
-              }
-              className={`px-4 py-2 font-medium flex flex-col items-center gap-1 transition
-                ${
-                  selectedCategory === category
-                    ? "bg-[#FFA968] text-white"
-                    : "text-[#FFA968] hover:bg-[#FFEAD9]"
-                }`}
-              style={{
-                width: 70,
-                minHeight: 70,
-                justifyContent: "center",
-                border: "1px solid #FFA968",
-                borderRadius: 8,
-              }}
-            >
-              <img
-                src={categoryIcons[category]}
-                alt={category}
-                className="w-7 h-7 mb-1"
+      <div className="relative overflow-hidden bg-[#FFEAD8] flex justify-center">
+        {/* 오른쪽 끝에서부터 시작하는 배경 이미지와 그라데이션 (1000*492) */}
+        <div
+          className="absolute top-0 right-0 z-0"
+          style={{
+            width: 1000,
+            height: 492,
+            backgroundImage: "url('/src/assets/background.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "right",
+            pointerEvents: "none",
+          }}
+        >
+          <div
+            className="w-full h-full"
+            style={{
+              background: "linear-gradient(to right, #FFEAD8 0%, #FFEAD800 100%)",
+              width: "100%",
+              height: "100%",
+            }}
+          />
+        </div>
+        <div
+          className="relative z-10 py-20 md:px-40 text-center w-full"
+          style={{ height: 414, minWidth: 320 }}
+        >
+          <span className="block px-0">
+            <img src="src/assets/carrot.png" alt="carrot" />
+          </span>
+          <h2 className="text-3xl font-bold mb-2 text-[#4B2E2B] text-left">판매되는 농작물</h2>
+          <p className="text-[#7A5B47] mb-6 text-left">신선한 농작물 상품들을 만나보세요.</p>
+          {/* 카테고리 버튼 */}
+          <div className="flex text-left gap-2 mb-10">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() =>
+                  setSelectedCategory((prev) =>
+                    prev === category ? "모두" : category
+                  )
+                }
+                className={`px-4 py-2 font-medium flex flex-col items-center gap-1 transition
+                  ${
+                    selectedCategory === category
+                      ? "bg-[#FFA968] text-white"
+                      : "text-[#FFA968] hover:bg-[#FFEAD9]"
+                  }`}
                 style={{
-                  filter: selectedCategory === category ? "brightness(0) invert(1)" : "none"
+                  width: 70,
+                  minHeight: 70,
+                  justifyContent: "center",
+                  border: "1px solid #FFA968",
+                  borderRadius: 8,
                 }}
-              />
-              <span className="text-xs">{category}</span>
-            </button>
-          ))}
+              >
+                <img
+                  src={categoryIcons[category]}
+                  alt={category}
+                  className="w-7 h-7 mb-1"
+                  style={{
+                    filter: selectedCategory === category ? "brightness(0) invert(1)" : "none"
+                  }}
+                />
+                <span className="text-xs">{category}</span>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
+      
       {/* 필터링된 카드 리스트 */}
       <div className="md:px-40 bg-[#FFF9F2] text-left pt-10">
         <h1 className="text-2xl md:text-3xl font-bold text-[#4B2E2B] mt-5 mb-2">농작물 리스트</h1>

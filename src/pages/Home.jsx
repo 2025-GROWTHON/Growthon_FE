@@ -31,7 +31,7 @@ export default function Home() {
         </div>
         {/* 왼쪽 텍스트 영역 */}
         <div className="text-center md:text-left z-10 md:px-40 w-full">
-          <h1 className="text-3xl md:text-4xl font-bold text-[#4B2E2B] mb-4">
+          <h1 className="text-3xl font-bold text-[#4B2E2B] mb-4">
             <span className="block">
               <img src="src/assets/carrot.png" alt="carrot" />
             </span>
