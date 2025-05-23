@@ -43,8 +43,8 @@ function App() {
             </span>
           }
         />
-        <Route path="/edit" element={<SelctProductModify />} />
-        <Route path="/edit/:produceId" element={<ModifyPage />} />
+        <Route path="/produce" element={<SelctProductModify />} />
+        <Route path="/produce/:produceId" element={<ModifyPage />} />
       </Routes>
       <Footer />
     </>

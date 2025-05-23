@@ -13,7 +13,38 @@ export default function CropForm() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await api.post("/produce", data);
+      const formData = new FormData();
+  
+      // 1. 이미지 파일 (단일 파일만 처리)
+      if (data.images && data.images.length > 0) {
+        formData.append("images", data.images[0]);
+      }
+  
+      // 2. JSON 데이터로 request 객체 구성
+      const requestPayload = {
+        title: data.title,
+        price: data.price,
+        origin: data.origin,
+        harvestDate: data.harvestDate,
+        weight: data.weight,
+        description: data.description,
+        category: data.type, 
+      };
+  
+      // 3. request를 JSON Blob으로 추가
+      formData.append(
+        "request",
+        new Blob([JSON.stringify(requestPayload)], {
+          type: "application/json",
+        })
+      );
+  
+      const response = await api.post("/produce", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+  
       let resData = response.data;
       resData = typeof resData === "string" ? JSON.parse(resData) : resData;
       console.log("서버 응답:", resData);
@@ -66,7 +97,7 @@ export default function CropForm() {
         <div>
           <label className="block mb-1 font-medium">생산 연월</label>
           <input
-            type="month"
+            type="date"
             {...register("harvestDate", {
               required: "생산 연월을 선택해주세요",
             })}
@@ -119,10 +150,10 @@ export default function CropForm() {
             className="w-full border p-2 rounded"
           >
             <option value="">선택하세요</option>
-            <option value="과일">과일</option>
-            <option value="채소">채소</option>
-            <option value="곡물">곡물</option>
-            <option value="기타">기타</option>
+            <option value="NONE">NONE</option>
+            <option value="FRUIT">FRUIT</option>
+            <option value="VEGETABLE">VEGETABLE</option>
+            <option value="GRAIN">GRAIN</option>
           </select>
           {errors.type && (
             <p className="text-red-500 text-sm">{errors.type.message}</p>

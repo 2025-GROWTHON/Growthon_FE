@@ -11,11 +11,12 @@ function Login() {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
   const [error, setError] = useState(null);
+  const dispatch = useDispatch();
 
   //앱 시작 시 로컬 스토리지에서 꺼내서 로그인 유지
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
-    const storedToken = localStorage.getItem("token");
+    const storedToken = localStorage.getItem("accessToken");
     if (storedUser && storedToken) {
       setUser(JSON.parse(storedUser));
       setToken(storedToken);
@@ -31,11 +32,11 @@ function Login() {
 
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("token", token);
+
+    dispatch(loginSuccess({ user, token }));
   };
 
   //그냥 로그인
-
-  const dispatch = useDispatch();
 
   const {
     register,
@@ -45,13 +46,13 @@ function Login() {
 
   const handleLogin = async (data) => {
     try {
-      const response = await axios.post("/api/login", data);
+      const response = await axios.post("/api/users/login", data);
 
       const { accessToken, user } = response.data.data; //구조 보니까 토큰이랑 user 위치 달라서 고쳐야 함,
 
       if (accessToken) {
         // 토큰 저장
-        localStorage.setItem("token", accessToken);
+        localStorage.setItem("accessToken", accessToken);
         dispatch(loginSuccess({ user, token: accessToken })); //authSlice에 저장
         alert("로그인 성공 하였습니다.");
       }
