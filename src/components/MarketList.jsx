@@ -76,8 +76,8 @@ function MarketList() {
           />
         </div>
         <div
-          className="relative z-10 py-20 md:px-40 text-center"
-          style={{ width: 1440, height: 422, minWidth: 320 }}
+          className="relative z-10 py-20 md:px-40 text-center w-full"
+          style={{ height: 414, minWidth: 320 }}
         >
           <span className="block px-0">
             <img src="src/assets/carrot.png" alt="carrot" />

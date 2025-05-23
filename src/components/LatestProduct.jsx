@@ -31,9 +31,9 @@ export default function LatestProducts() {
   }, []);
 
   return (
-    <div className="py-10 text-center bg-[#FFF9F2]">
-      <h2 className="text-2xl font-bold mb-2 md:px-40 text-[#4B2E2B] text-left">최신 상품</h2>
-      <p className=" mb-6 md:px-40 text-[#7A5B47] text-left">고품질의 농작물을 확인하세요.</p>
+    <div className="py-14 text-center bg-[#FFF9F2]">
+      <h2 className="text-3xl font-bold mb-2 md:px-40 text-[#4B2E2B] text-left">최신 상품</h2>
+      <p className=" mb-11 md:px-40 text-[#7A5B47] text-left">고품질의 농작물을 확인하세요.</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-8 md:px-40 text-left">
         {products.map((product) => (
           <div
