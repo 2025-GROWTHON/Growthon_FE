@@ -48,58 +48,60 @@ const farms = [
 
 export default function FarmList() {
   return (
-    <section className="px-6 pb-12 bg-[#FFF9F2] md:px-40">
-      <div className="h-8 py-10"/>
-      <h2 className="text-3xl font-bold text-[#50392A] text-center mb-10">농장 리스트</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {farms.map((farm) => (
-          <Link
-            className="flex flex-col items-center transition"
-            style={{
-              width: 338,
-              height: 410,
-              gap: 10,
-              borderRadius: 15,
-              paddingTop: 17,
-              paddingRight: 20,
-              paddingBottom: 17,
-              paddingLeft: 20,
-              boxShadow: "0 4px 16px 0 #BB8D6C33",
-              border: "1px solid #e5e7eb",
-              boxSizing: "border-box",
-            }}
-          >
-            <div className="w-[298px] h-[298px] bg-gray-100 flex items-center justify-center text-gray-400 mb-3 overflow-hidden rounded-[10px]">
-              <img
-                src={farm.image}
-                alt={farm.name}
-                className="object-cover w-[298px] h-[298px]"
-                style={{ display: "block" }}
-              />
-            </div>
-            <div className="flex items-center gap-2 mt-2">
-              <h3 className="font-medium text-[#7A5B47] mb-0">{farm.name}</h3>
-              <button
-                className="text-sm px-4 py-2 border rounded transition-colors duration-150 hover:bg-[#FFEAD9]"
-                style={{
-                  borderColor: "#FFA968",
-                  color: "#FFA968",
-                }}
-                onClick={e => {
-                  e.preventDefault();
-                  if (farm.name === "행복 농장") {
-                    window.open("http://pf.kakao.com/_PjqSn/chat", "_blank");
-                  }
-                  if (farm.name === "황금 농장") {
-                    window.open("http://pf.kakao.com/_RxlqSn/chat", "_blank");
-                  }
-                }}
-              >
-                문의하기
-              </button>
-            </div>
-          </Link>
-        ))}
+    <section className="bg-[#FFF9F2] py-12">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl font-bold text-[#50392A] text-center mb-10">농장 리스트</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 justify-items-center">
+          {farms.map((farm) => (
+            <Link
+              key={farm.id}
+              className="flex flex-col items-center transition"
+              style={{
+                width: 338,
+                height: 410,
+                gap: 10,
+                borderRadius: 15,
+                paddingTop: 17,
+                paddingRight: 20,
+                paddingBottom: 17,
+                paddingLeft: 20,
+                boxShadow: "0 4px 16px 0 #BB8D6C33",
+                border: "1px solid #e5e7eb",
+                boxSizing: "border-box",
+              }}
+            >
+              <div className="w-[298px] h-[298px] bg-gray-100 flex items-center justify-center text-gray-400 mb-3 overflow-hidden rounded-[10px]">
+                <img
+                  src={farm.image}
+                  alt={farm.name}
+                  className="object-cover w-[298px] h-[298px]"
+                  style={{ display: "block" }}
+                />
+              </div>
+              <div className="flex items-center gap-2 mt-2">
+                <h3 className="font-medium text-[#7A5B47] mb-0">{farm.name}</h3>
+                <button
+                  className="text-sm px-4 py-2 border rounded transition-colors duration-150 hover:bg-[#FFEAD9]"
+                  style={{
+                    borderColor: "#FFA968",
+                    color: "#FFA968",
+                  }}
+                  onClick={e => {
+                    e.preventDefault();
+                    if (farm.name === "행복 농장") {
+                      window.open("http://pf.kakao.com/_PjqSn/chat", "_blank");
+                    }
+                    if (farm.name === "황금 농장") {
+                      window.open("http://pf.kakao.com/_RxlqSn/chat", "_blank");
+                    }
+                  }}
+                >
+                  문의하기
+                </button>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );
