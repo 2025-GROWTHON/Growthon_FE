@@ -45,7 +45,7 @@ function KaKaoLoginButton({ onSuccess, onFailure }) {
   };
 
   return (
-    <button onClick={handleLogin} className="kakaoLogin-btn">
+    <button type="button" onClick={handleLogin} className="kakaoLogin-btn">
       <img
         className="kakaoLogin-image "
         src={kakaoBtnImg}
