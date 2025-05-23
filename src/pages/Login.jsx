@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { loginSuccess } from "../store/authSlice";
@@ -8,32 +9,32 @@ import KaKaoLoginButton from "../components/KaKaoLoginButton";
 
 function Login() {
   //카카오 로그인
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
   //앱 시작 시 로컬 스토리지에서 꺼내서 로그인 유지
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    const storedToken = localStorage.getItem("accessToken");
-    if (storedUser && storedToken) {
-      setUser(JSON.parse(storedUser));
-      setToken(storedToken);
+    if (localStorage.getItem("user") == null) {
+      const storedUser = localStorage.getItem("user");
+      const storedToken = localStorage?.getItem("accessToken");
+      if (storedUser && storedToken) {
+        setUser(JSON.parse(storedUser));
+        setToken(storedToken);
+      }
     }
   }, []);
+  const navigate = useNavigate();
 
   // 로그인 성공 핸들러: user 저장 + localStorage에 영구 보관    한번  더하는 이유는 역할 나누기 (백엔드 보내기 / 로컬 저장 )
   const handleSuccess = async (res) => {
-    const { user, token } = res;
+    const token = res.data.token;
+    const user = res.data;
 
-    setUser(user);
-    setToken(token);
-
-    localStorage.setItem("user", JSON.stringify(user));
-    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(user.id));
+    localStorage.setItem("accessToken", token);
 
     dispatch(loginSuccess({ user, token }));
+    navigate("/");
   };
 
   //그냥 로그인
@@ -54,23 +55,24 @@ function Login() {
         // 토큰 저장
         localStorage.setItem("accessToken", accessToken);
         dispatch(loginSuccess({ user, token: accessToken })); //authSlice에 저장
-        alert("로그인 성공 하였습니다.");
+        alert(response.data.message);
+        navigate("/");
       }
     } catch (error) {
-      alert("로그인 실패 하였습니다.");
+      alert(error.response?.data?.message || "로그인에 실패했습니다.");
     }
   };
 
   return (
-    <div className="login-box">
-      <h1 className="login-title">로그인</h1>
+    <div className="login-box" style={{ marginTop: 105 }}>
+      <div className="login-title">로그인</div>
       <form onSubmit={handleSubmit(handleLogin)} className="login-box-right">
         {/* 이메일 */}
         <div>
           <label className="login-field">Email</label>
           <input
             placeholder="Enter your email"
-            className="login-input"
+            className={`${errors.email ? " input-error" : "login-input"}`}
             type="email"
             {...register("email", {
               required: "이메일은 필수입니다.",
@@ -81,15 +83,17 @@ function Login() {
             })}
           />
           {errors.email && (
-            <p className="text-red-500 text-sm">{errors.email.message}</p>
+            <div className="err-text">
+              <p>{errors.email.message}</p>
+            </div>
           )}
         </div>
         {/* 비밀번호 */}
         <div>
-          <label className="login-field">비밀번호</label>
+          <label className="login-field">Password</label>
           <input
             placeholder="Create a password"
-            className="login-input"
+            className={`${errors.password ? " input-error" : "login-input"}`}
             type="password"
             {...register("password", {
               required: "비밀번호는 필수입니다.",
@@ -100,14 +104,18 @@ function Login() {
             })}
           />
           {errors.password && (
-            <p className="text-red-500 text-sm">{errors.password.message}</p>
+            <div className="err-text">
+              <p>{errors.password.message}</p>
+            </div>
           )}
         </div>
-        <button type="submit" className="login-button">
-          <p>로그인</p>
-        </button>
+        <div className="login-box-container">
+          <button type="submit" className="login-button">
+            <p>LOGIN</p>
+          </button>
+          <KaKaoLoginButton onSuccess={handleSuccess} onFailure={setError} />
+        </div>
       </form>
-      <KaKaoLoginButton onSuccess={handleSuccess} onFailure={setError} />
     </div>
   );
 }

@@ -70,25 +70,50 @@ function SelectProductModify() {
   };
 
   return (
-    <div>
-      <h4>내 농작물 수정 및 삭제</h4>
-      <p>여기에서 등록한 농작물을 관리할 수 있습니다.</p>
-      <button onClick={handleDeleteClick}>삭제하기</button>
-      <button onClick={() => navigate("./")}>새 농작물 추가</button>
-      <p>-------------------</p>
-      <h4>내 등록 농작물</h4>
-      <p>수정 및 삭제할 농작물을 선택하세요</p>
-      <button onClick={handleDeleteClick}>삭제하기</button>
-      <button onClick={handleModify}>수정하기</button>
-      <ul>
+    <div className="login-page">
+      <div className="loginOrsign-container ">
+        <div className="loginOrsign-box">
+          <h4 className="loginnOrsign-title font-bold">
+            내 농작물 수정 및 삭제
+          </h4>
+          <p className="productInput-des -mt-5">
+            여기에서 등록한 농작물을 관리할 수 있습니다.
+          </p>
+
+          <div className="loginOrsign-btns">
+            <button className="lo-si-login-btn" onClick={handleDeleteClick}>
+              <p>삭제하기</p>
+            </button>
+            <button
+              className="lo-si-sinup-btn"
+              onClick={() => navigate("/register")}
+            >
+              <p>새 농작물 추가</p>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="inputForm-pg" style={{ height: 100 }}>
+        <div className="inputForm-tisub">
+          <h4 className="inputForm-title">내 등록 농작물</h4>
+          <p className="inputForm-sub ">수정 및 삭제할 농작물을 선택하세요</p>
+          <div className="loginOrsign-btns mt-8">
+            <button className="modify-delete-btn" onClick={handleDeleteClick}>
+              <p>삭제하기</p>
+            </button>
+            <button className="modify-btn" onClick={handleModify}>
+              <p>수정하기</p>
+            </button>
+          </div>
+        </div>
+      </div>
+      <ul className="myProduct-list">
         {userProducts.map((item) => (
           <li
             key={item.produceId}
             style={{
-              border:
-                selectedId === item.produceId
-                  ? "2px solid green"
-                  : "1px solid #ccc",
+              border: selectedId === item.produceId ? "2px solid green" : "",
+              borderRadius: selectedId === item.produceId ? "15px;" : "15px",
               cursor: "pointer",
               marginBottom: "8px",
             }}

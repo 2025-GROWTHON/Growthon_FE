@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import "../App.css";
+import kakaoBtnImg from "../assets/images/kakao-login-btn.png";
 
 function KaKaoLoginButton({ onSuccess, onFailure }) {
   const [ready, setReady] = useState(false);
@@ -26,13 +28,13 @@ function KaKaoLoginButton({ onSuccess, onFailure }) {
           success: async (user) => {
             console.log(user);
             console.log({
-              kakaoID: user.kakao_account?.email,
-              nickname: user.properties?.nickname,
+              email: user.kakao_account?.email,
+              username: user.properties?.nickname,
             });
             //포스트
             const res = await axios.post("/api/auth/kakao", {
-              kakaoID: user.kakao_account?.email,
-              nickname: user.properties?.nickname,
+              email: user.kakao_account?.email,
+              username: user.properties?.nickname,
             });
             onSuccess(res.data);
           },
@@ -42,7 +44,15 @@ function KaKaoLoginButton({ onSuccess, onFailure }) {
     });
   };
 
-  return <button onClick={handleLogin}>카카오로 로그인 시작하기</button>;
+  return (
+    <button type="button" onClick={handleLogin} className="kakaoLogin-btn">
+      <img
+        className="kakaoLogin-image "
+        src={kakaoBtnImg}
+        alt="카카오 로그인"
+      />
+    </button>
+  );
 }
 
 export default KaKaoLoginButton;

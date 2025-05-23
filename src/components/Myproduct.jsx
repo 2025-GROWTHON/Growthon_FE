@@ -1,30 +1,45 @@
 import React from "react";
 
+const categoryNameMap = {
+  FRUIT: "과일",
+  VEGETABLE: "채소",
+  GRAIN: "곡물",
+};
+
 function Myproduct({ item }) {
   return (
-    <div>
-      <div className="border rounded-lg shadow-sm p-4 hover:shadow-md transition bg-white">
-        {/* 카테고리 */}
-        <span className="inline-block text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded mb-2">
-          {item.category}
-        </span>
-
-        {/* 이미지 */}
-        <div className="h-32 bg-gray-100 flex items-center justify-center text-gray-400 text-sm mb-3">
+    <div
+      className="rounded-[15px] border border-[#e5e7eb] shadow-[0_4px_16px_0_#BB8D6C33] p-5"
+      style={{ width: 338, boxSizing: "border-box" }}
+    >
+      {/* 이미지 (Home 카드와 동일한 스타일) */}
+      <div className="relative w-[298px] h-[298px] bg-gray-200 flex items-center justify-center mb-3 overflow-hidden rounded-[10px]">
+        {item.images ? (
           <img
             src={`http://localhost:8080/images/${item.images}`}
             alt={item.title}
-            className="h-full w-full object-cover"
+            className="object-cover w-full h-full"
           />
-        </div>
-
+        ) : (
+          <span className="text-gray-500">{`http://localhost:8080/images/${item.images}`}</span>
+        )}
+        <span
+          className="absolute top-0 left-0 px-3 py-1 text-xs font-semibold rounded-br bg-[#FFA968] bg-opacity-90 text-white shadow"
+          style={{
+            letterSpacing: "0.02em",
+            borderTopLeftRadius: 0,
+            borderBottomRightRadius: 8,
+          }}
+        >
+          {categoryNameMap[item.category] || item.category}
+        </span>
+      </div>
+      <div className="text-[#50392A]">
         {/* 상품 이름 */}
-        <h3 className="font-medium mb-1">{item.title}</h3>
-
+        <h3>{item.title}</h3>
         {/* 가격 */}
-        <p className="text-sm text-gray-700">
-          가격:{" "}
-          <span className="font-bold">{item.price.toLocaleString()}원</span>
+        <p>
+          <span>{item.price.toLocaleString()}원</span>
         </p>
       </div>
     </div>
