@@ -10,7 +10,7 @@ export default function Home() {
         {/* 왼쪽 텍스트 영역 */}
         <div className="text-center md:text-left z-10 md:px-40">
           <h1 className="text-3xl md:text-4xl font-bold text-[#4B2E2B] mb-4">
-            <span className="block">🥕</span>
+            <span className="block"><img src="src/assets/carrot.png"></img></span>
             <span className="block">신선한 농작물의 세계에 오신 것을</span>
             <span className="block">환영합니다!</span>
           </h1>

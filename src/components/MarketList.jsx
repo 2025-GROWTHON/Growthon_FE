@@ -43,8 +43,9 @@ function MarketList() {
   return (
     <div>
       <div className = "py-10 bg-[#FFDBC066] md:px-40 text-center">
-        <h2 className="text-3xl font-bold mb-2 mt-5 text-[#4B2E2B] text-left">판매되는 농작물</h2>
-        <p className="text-gray-600 mb-6 text-left">신선한 농작물 상품들을 만나보세요.</p>
+        <span className="block px-0"><img src="src/assets/carrot.png"></img></span>
+        <h2 className="text-3xl font-bold mb-2 text-[#4B2E2B] text-left">판매되는 농작물</h2>
+        <p className="text-[#7A5B47] mb-6 text-left">신선한 농작물 상품들을 만나보세요.</p>
 
         {/* 카테고리 버튼 */}
         <div className="flex text-left gap-2 mb-10">
@@ -71,7 +72,7 @@ function MarketList() {
       {/* 필터링된 카드 리스트 */}
       <div className="md:px-40 bg-[#FFF9F2] text-left pt-10">
         <h1 className="text-2xl md:text-3xl font-bold text-[#4B2E2B] mb-2">농작물 리스트</h1>
-        <p className="text-gray-600">신선한 농작물 상품들을 만나보세요.</p>
+        <p className="text-[#7A5B47]">신선한 농작물 상품들을 만나보세요.</p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:px-40 gap-4 py-10 bg-[#FFF9F2]">
         {filteredProducts.map((item) => (
@@ -83,8 +84,8 @@ function MarketList() {
                   {categoryNameMap[item.category] || item.category}
                 </span>
               </div>
-              <h3 className="font-medium text-sm mb-1">{item.title}</h3>
-              <p className="text-sm text-gray-700">
+              <h3 className="text-[#4B2E2B] font-medium text-sm mb-1">{item.title}</h3>
+              <p className="text-sm text-[#4B2E2B]">
                 <span className="font-bold">{item.price.toLocaleString()}원</span>
               </p>
             </div>
