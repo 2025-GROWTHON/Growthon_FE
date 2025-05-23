@@ -73,7 +73,9 @@ function SelectProductModify() {
     <div className="login-page">
       <div className="loginOrsign-container ">
         <div className="loginOrsign-box">
-          <h4 className="loginnOrsign-title">내 농작물 수정 및 삭제</h4>
+          <h4 className="loginnOrsign-title font-bold">
+            내 농작물 수정 및 삭제
+          </h4>
           <p className="productInput-des -mt-5">
             여기에서 등록한 농작물을 관리할 수 있습니다.
           </p>

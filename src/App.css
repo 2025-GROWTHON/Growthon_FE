@@ -236,8 +236,8 @@
   height: 48px;
   z-index: 0;
   font-family: Pretendard;
+  font-weight: bold;
   font-size: 36px;
-  font-weight: normal;
   line-height: 48px;
   text-align: center;
   letter-spacing: 0em;
@@ -400,9 +400,9 @@
   width: 1100px;
   height: 48px;
   z-index: 0;
+  font-weight: bold;
   font-family: Pretendard;
   font-size: 36px;
-  font-weight: normal;
   line-height: 48px;
   text-align: center;
   letter-spacing: 0em;
@@ -999,4 +999,198 @@
   justify-content: center;
   overflow: hidden;
   margin: 0 auto 16px auto;
+}
+
+.header {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 1440px;
+  height: 75px;
+  /* Smart layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 21px 184px;
+  gap: 424px;
+  opacity: 1;
+  /* primary-300 */
+  background: #fff9f2;
+  box-shadow: 0px 4px 20px 0px rgba(187, 141, 108, 0.2);
+}
+
+.short-stick {
+  /* Child objects in a smart layout frame */
+  position: static;
+  left: 261.65px;
+  top: 3.5px;
+  width: 0px;
+  height: 16px;
+  transform: rotate(0deg);
+  z-index: 2;
+  opacity: 1;
+  /* primary-100 */
+  border: 1px solid #ffa968;
+}
+
+.input-filed-title {
+  font-family: Pretendard;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: normal;
+  text-align: center;
+  letter-spacing: 0em;
+  /* primary-400 */
+  color: #7a5b47;
+  /* Child objects in a smart layout frame */
+  position: static;
+  left: 182.65px;
+  top: 3px;
+  width: 55px;
+  height: 17px;
+  z-index: 1;
+}
+
+.header-login-box {
+  /* Child objects in a smart layout frame */
+  position: static;
+  left: 0px;
+  top: 0px;
+  width: 103px;
+  height: 33px;
+  /* Smart layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 32px;
+  gap: 10px;
+  z-index: 0;
+  border-radius: 10px;
+  opacity: 1;
+  box-sizing: border-box;
+  /* primary-100 */
+  border: 1px solid #ffa968;
+}
+
+.header-login-box p {
+  /* Child objects in a smart layout frame */
+  position: static;
+  left: 32px;
+  top: 8px;
+  width: 39px;
+  height: 17px;
+  z-index: 0;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: normal;
+  text-align: center;
+  letter-spacing: -0.03em;
+  /* primary-100 */
+  color: #ffa968;
+}
+
+.header-login-box span {
+  position: static;
+  left: 25.5px;
+  top: 8px;
+  width: 50px;
+  height: 17px;
+  z-index: 0;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: normal;
+  text-align: center;
+  letter-spacing: -0.03em;
+  color: #ffa968;
+}
+
+.delet-text {
+  /* Child objects in a smart layout frame */
+  position: static;
+  left: 0px;
+  top: 0px;
+  width: 393px;
+  height: 26px;
+  z-index: 0;
+  font-family: Pretendard;
+  font-size: 24px;
+  font-weight: normal;
+  line-height: normal;
+  text-align: center;
+  letter-spacing: -0.03em;
+  /* primary-500 */
+  color: #50392a;
+}
+
+.deletButton {
+  /* Child objects in a smart layout frame */
+  position: static;
+  left: 0px;
+  top: 83px;
+  width: 393px;
+  height: 50px;
+  /* Smart layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 156px;
+  gap: 10px;
+  align-self: stretch;
+  z-index: 1;
+  border-radius: 6px;
+  opacity: 1;
+  /* primary-100 */
+  background: #ffa968;
+  margin-top: 40px;
+  margin-left: 17px;
+}
+
+.deletBox {
+  position: absolute;
+  width: 450px;
+  height: 205px;
+  /* Smart layout */
+  display: flex;
+  flex-direction: column;
+  padding: 13px;
+  gap: 10px;
+  border-radius: 10px;
+  opacity: 1;
+  /* primary-300 */
+  background: #fff9f2;
+}
+
+.deletButton p {
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: normal;
+  text-align: center;
+  letter-spacing: -0.03em;
+  /* primary-300 */
+  color: #fff9f2;
+}
+
+.deletbox-text {
+  margin-left: 17px;
+  /* Child objects in a smart layout frame */
+  margin-top: 40px;
+  position: static;
+  left: 0px;
+  top: 0px;
+  width: 393px;
+  height: 26px;
+  z-index: 0;
+  font-family: Pretendard;
+  font-size: 24px;
+  font-weight: normal;
+  line-height: normal;
+  text-align: center;
+  letter-spacing: -0.03em;
+  /* primary-500 */
+  color: #50392a;
 }

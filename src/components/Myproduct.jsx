@@ -25,7 +25,11 @@ function Myproduct({ item }) {
         )}
         <span
           className="absolute top-0 left-0 px-3 py-1 text-xs font-semibold rounded-br bg-[#FFA968] bg-opacity-90 text-white shadow"
-          style={{ letterSpacing: "0.02em", borderTopLeftRadius: 0, borderBottomRightRadius: 8 }}
+          style={{
+            letterSpacing: "0.02em",
+            borderTopLeftRadius: 0,
+            borderBottomRightRadius: 8,
+          }}
         >
           {categoryNameMap[item.category] || item.category}
         </span>

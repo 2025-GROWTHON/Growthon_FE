@@ -166,9 +166,9 @@ function ModifyPage() {
                   })}
                   className="w-full border p-2 rounded"
                 >
-                  <option value="FRUIT">FRUIT</option>
-                  <option value="VEGETABLE">VEGETABLE</option>
-                  <option value="GRAIN">GRAIN</option>
+                  <option value="FRUIT">과일</option>
+                  <option value="VEGETABLE">채소</option>
+                  <option value="GRAIN">곡물</option>
                 </select>
                 {errors.category && <p>{errors.category.message}</p>}
               </div>
