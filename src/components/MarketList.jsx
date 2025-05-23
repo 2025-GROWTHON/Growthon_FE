@@ -103,16 +103,6 @@ function MarketList() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:px-40 gap-4 py-10 bg-[#FFF9F2]">
         {filteredProducts.map((item) => (
           <Link to={`/market/${item.produceId}`} key={item.produceId}>
-<<<<<<< HEAD
-            <div className="border rounded-lg shadow-sm p-4 hover:shadow-md transition bg-white text-left">
-              {/* 카테고리 */}
-              <span className="inline-block text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded mb-2">
-                {categoryNameMap[item.category] || item.category}
-              </span>
-              {/* 이미지 */}
-              <div className="h-32 bg-gray-100 flex items-center justify-center text-gray-400 text-sm mb-3">
-                <img src={`http://localhost:8080/images/${item.images}`} alt={item.title} className="h-full w-full object-cover" />
-=======
             <div
               className="flex flex-col transition"
               style={{
@@ -145,7 +135,6 @@ function MarketList() {
                 >
                   {categoryNameMap[item.category] || item.category}
                 </span>
->>>>>>> design-mj
               </div>
               <h3 className="font-medium text-[#7A5B47] mb-0">{item.title}</h3>
               <p className="text-sm text-[#4B2E2B]">
