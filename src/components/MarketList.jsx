@@ -71,7 +71,7 @@ function MarketList() {
       </div>
       {/* 필터링된 카드 리스트 */}
       <div className="md:px-40 bg-[#FFF9F2] text-left pt-10">
-        <h1 className="text-2xl md:text-3xl font-bold text-[#4B2E2B] mb-2">농작물 리스트</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-[#4B2E2B] mt-5 mb-2">농작물 리스트</h1>
         <p className="text-[#7A5B47]">신선한 농작물 상품들을 만나보세요.</p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:px-40 gap-4 py-10 bg-[#FFF9F2]">

@@ -2,11 +2,11 @@ export default function ProductDescription({ product }) {
   return (
     <section className="px-6 pb-12 py-20 bg-[#FFF9F2]">
       <h3 className="text-2xl text-[#4B2E2B] font-bold text-center mb-2 ">상품 설명</h3>
-      <p className="text-sm text-gray-500 text-center mb-6">
+      <p className="text-sm text-[#4B2E2B] text-center mb-6">
         저희의 농작물 제품은 신선하고 안전하게 재배됩니다.
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 place-items-center mb-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 text-[#4B2E2B] mb-10 max-w-3xl mx-auto">
         <InfoBox label="상품 설명 및 농가 정보" value={product.description} />
         <InfoBox label="중량" value={`${product.weight}`} />
         <InfoBox label="생산지" value={product.origin} />
